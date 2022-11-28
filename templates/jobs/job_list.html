@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block pagetitle %}
+    | Job List
+{% endblock pagetitle %}
+    
+
+{% block content %}
+  <div>
+    {% for job in job_list %}
+        <a href="{% url 'jobDetail' job.slug %}"><p>{{ job.post_title }}</p></a>
+        
+    {% endfor %}
+  </div>  
+{% endblock content %}
+    

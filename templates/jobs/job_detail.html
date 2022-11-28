@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block pagetitle %}
+    | {{ job.post_title }}
+{% endblock pagetitle %}
+    
+
+{% block content %}
+  <div>
+    <h1>{{ job.post_title }}</h1>
+  </div>  
+{% endblock content %}
+    
