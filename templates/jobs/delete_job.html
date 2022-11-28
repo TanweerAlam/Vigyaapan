@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% load crispy_forms_tags %}
+<!-- {% load crispy_forms_filters %} -->
+
+{% block pagetitle %}
+    | Add job
+{% endblock pagetitle %}
+    
+
+{% block content %}
+  <div>
+    <form action="" method="post">
+        {% csrf_token %}
+        <p>Are you sure you want to delete "{{ object }}"?</p>
+        <input type="submit" value="Confirm" />
+    </form>
+  </div>  
+{% endblock content %}
+    

@@ -2,8 +2,10 @@ from django.shortcuts import render
 from django.views.generic.base import TemplateView
 from django.views.generic import ListView, DetailView, CreateView, DeleteView 
 from django.views.generic.edit import UpdateView
+from django.urls import reverse_lazy
 
 from .models import Job
+from .forms import JobCreationForm
 
 
 
@@ -23,7 +25,8 @@ class JobDetailView(DetailView):
 
 class JobCreateView(CreateView):
     model = Job
-    fields = ("__all__")
+    # fields = ("__all__")
+    form_class = JobCreationForm
     template_name = "jobs/add_update_job.html"
 
 class JobUpdateView(UpdateView):
@@ -31,3 +34,8 @@ class JobUpdateView(UpdateView):
     fields = ("__all__")
     exclude = ('slug')
     template_name = "jobs/add_update_job.html"
+
+class JobDeleteView(DeleteView):
+    model = Job
+    template_name = 'jobs/delete_job.html'
+    success_url = reverse_lazy('jobList')
