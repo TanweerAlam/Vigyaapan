@@ -13,6 +13,11 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 
+# importing environment variables
+import environ
+env = environ.Env()
+environ.Env.read_env()
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -32,6 +37,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'users',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -95,18 +102,18 @@ DATABASES = {
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    # {
+    #     'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    # },
+    # {
+    #     'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    # },
+    # {
+    #     'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    # },
+    # {
+    #     'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    # },
 ]
 
 
@@ -137,3 +144,21 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # CRISPY_TEMPLATE_PACK = 'uni_form'
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
+
+# Login & logout redirection
+LOGIN_REDIRECT_URL = "users:dashboard"
+LOGOUT_REDIRECT_URL = "main:index"
+
+# 
+AUTH_USER_MODEL = "users.CustomUser"
+
+# # Email backend
+# EMAIL_HOST = "localhost"
+# EMAIL_PORT = 1025
+
+# Using mailgun for as Email backend
+EMAIL_HOST = env('SMTP_HOSTNAME')
+EMAIL_PORT = env('SMTP_PORT')
+EMAIL_HOST_USER = env('SMTP_USERNAME')
+EMAIL_HOST_PASSWORD = env('SMTP_PASSWORD')
+EMAIL_USE_TLS = True

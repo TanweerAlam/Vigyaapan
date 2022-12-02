@@ -10,7 +10,7 @@
 {% block content %}
   <div>
     {% for job in job_list %}
-        <a href="{% url 'jobDetail' job.slug %}"><p>{{ job.post_title }}</p></a>
+        <a href="{% url 'jobs:jobDetail' job.slug %}"><p>{{ job.post_title }}</p></a>
         
     {% endfor %}
   </div>  

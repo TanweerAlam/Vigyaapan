@@ -4,6 +4,9 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
 
+from django.conf import settings
+from django.contrib.auth import get_user_model
+
 # Create your models here.
 class State(models.Model):
     state_code = models.CharField(max_length=10, null=False, blank=False)
@@ -41,7 +44,7 @@ class Job(models.Model):
     # post_updated_date = models.DateField()
 
     application_mode = models.CharField(max_length=30, choices=APPLICATION)
-    application_link = models.URLField(null=True, blank=True)
+    application_link = models.URLField(null=True, blank=True, default='')
 
     minimum_age = models.PositiveIntegerField(default=18, validators=[MinValueValidator(17), MaxValueValidator(30)])
     maximum_age = models.PositiveIntegerField(default=28, validators=[MinValueValidator(18), MaxValueValidator(60)])
@@ -51,16 +54,17 @@ class Job(models.Model):
     total_posts = models.PositiveIntegerField()
     application_fee = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0)])
 
-    official_site = models.URLField(null=True, blank=True)
-    admit_card_link = models.URLField(null=True, blank=True)
-    notification_link = models.URLField(null=True, blank=True)
+    official_site = models.URLField(null=True, blank=True, default='')
+    admit_card_link = models.URLField(null=True, blank=True, default='')
+    notification_link = models.URLField(null=True, blank=True, default='')
 
     isPublished = models.BooleanField(default=False, verbose_name="Published?")
 
     created_on = models.DateField(auto_now_add=True, editable=False)
     updated_on = models.DateField(auto_now=True)
 
-    slug = models.SlugField(max_length=300, blank=True, null=True)
+    slug = models.SlugField(max_length=300, blank=True, null=True, default='')
+    author = models.ForeignKey(get_user_model(), related_name='jobs', to_field='username', on_delete=models.SET_DEFAULT, default='admin')
 
     class Meta:
         verbose_name = 'Job'
