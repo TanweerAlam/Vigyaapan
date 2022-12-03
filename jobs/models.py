@@ -9,11 +9,15 @@ from django.contrib.auth import get_user_model
 
 # Create your models here.
 class State(models.Model):
-    state_code = models.CharField(max_length=10, null=False, blank=False)
-    state = models.CharField(max_length=30, unique=True, null=False, blank=False)
+    # state_code = models.CharField(max_length=10, unique=True, null=False, blank=False)
+    state = models.CharField(max_length=30, null=True, blank=True)
 
     def __str__(self):
         return self.state
+
+
+def get_default_state():
+    return State.objects.all().first()
 
 
 class Job(models.Model):
@@ -33,7 +37,7 @@ class Job(models.Model):
 
     post_title = models.CharField(max_length=200, default='Default name', null=False, blank=False)
     # state = models.CharField(max_length=30, default='Central')
-    state = models.ForeignKey(State, related_name='jobs', to_field="state", on_delete=models.SET_DEFAULT, default='Central')
+    state = models.ForeignKey(State, on_delete=models.SET_NULL, default=None, null=True, blank=True)
 
     brief_intro = models.TextField(max_length=500, default='Brief introduction of the job post')
     body = models.TextField(max_length=500, default='Information of the job post', null=True, blank=True)
@@ -64,7 +68,7 @@ class Job(models.Model):
     updated_on = models.DateField(auto_now=True)
 
     slug = models.SlugField(max_length=300, blank=True, null=True, default='')
-    author = models.ForeignKey(get_user_model(), related_name='jobs', to_field='username', on_delete=models.SET_DEFAULT, default='admin')
+    author = models.ForeignKey(get_user_model(), on_delete=models.SET_NULL, default=None, null=True, blank=True)
 
     class Meta:
         verbose_name = 'Job'

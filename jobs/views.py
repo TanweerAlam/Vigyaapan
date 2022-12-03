@@ -31,7 +31,7 @@ class JobCreateView(LoginRequiredMixin, CreateView):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
-class JobUpdateView(LoginRequiredMixin, UpdateView):
+class JobUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Job
     form_class = JobCreationUpdationForm
     template_name = "jobs/add_update_job.html"
@@ -40,7 +40,7 @@ class JobUpdateView(LoginRequiredMixin, UpdateView):
         obj = self.get_object()
         return obj.author == self.request.user
 
-class JobDeleteView(LoginRequiredMixin, DeleteView):
+class JobDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Job
     template_name = 'jobs/delete_job.html'
     success_url = reverse_lazy('jobs:jobList')

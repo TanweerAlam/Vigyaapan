@@ -45,6 +45,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # sitemap
+    # 'django.contrib.sites',
+    'django.contrib.sitemaps',
 
     # Local app
     'main',
