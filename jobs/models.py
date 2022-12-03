@@ -10,7 +10,7 @@ from django.contrib.auth import get_user_model
 # Create your models here.
 class State(models.Model):
     state_code = models.CharField(max_length=10, null=False, blank=False)
-    state = models.CharField(max_length=30, null=True, blank=False)
+    state = models.CharField(max_length=30, unique=True, null=False, blank=False)
 
     def __str__(self):
         return self.state
@@ -33,7 +33,7 @@ class Job(models.Model):
 
     post_title = models.CharField(max_length=200, default='Default name', null=False, blank=False)
     # state = models.CharField(max_length=30, default='Central')
-    state = models.ForeignKey(State, related_name='jobs', on_delete=models.SET_DEFAULT, default='Central')
+    state = models.ForeignKey(State, related_name='jobs', to_field="state", on_delete=models.SET_DEFAULT, default='Central')
 
     brief_intro = models.TextField(max_length=500, default='Brief introduction of the job post')
     body = models.TextField(max_length=500, default='Information of the job post', null=True, blank=True)
@@ -84,4 +84,4 @@ class Job(models.Model):
 
     
     def get_absolute_url(self):
-        return reverse('jobDetail', kwargs={'slug': self.slug})
+        return reverse('jobs:jobDetail', kwargs={'slug': self.slug})
