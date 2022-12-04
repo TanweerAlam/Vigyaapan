@@ -8,7 +8,7 @@ from .models import Main
 
 class IndexView(TemplateView):
     template_name = "main/index.html"
-    extra_context = {'site' : Main.objects.get(page__icontains="home")}
+    # extra_context = {'site' : Main.objects.get(page__icontains="home")}
     
     # def get_context_data(self, **kwargs):
     #     context = super(IndexView, self).get_context_data(**kwargs)
@@ -18,8 +18,8 @@ class IndexView(TemplateView):
 
 class AboutView(TemplateView):
     template_name = "main/about.html"
-    extra_context = {'site' : Main.objects.get(page__icontains="about")}
+    # extra_context = {'site' : Main.objects.get(page__icontains="about")}
     
 class ContactView(TemplateView):
     template_name = "main/contact.html"
-    extra_context = {'site' : Main.objects.get(page__icontains="contact")}
+    # extra_context = {'site' : Main.objects.get(page__icontains="contact")}

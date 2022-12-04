@@ -4,6 +4,7 @@ from django.views.generic import ListView, DetailView, CreateView, DeleteView
 from django.views.generic.edit import UpdateView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import (LoginRequiredMixin, UserPassesTestMixin)
+from django.db.models import Q
 
 from .models import Job
 from .forms import JobCreationUpdationForm
@@ -12,7 +13,19 @@ from .forms import JobCreationUpdationForm
 
 class Home(TemplateView):
     template_name = "jobs/home.html"
-    
+
+class SearchListView(ListView):
+    model = Job
+    context_object_name = 'job_list'
+    template_name = 'jobs/search_results.html'
+
+    # queryset = Job.objects.filter(post_title__icontains="engineers")
+    def get_queryset(self):
+        query = self.request.GET.get('q')
+        return Job.objects.filter(
+            Q(post_title__icontains=query) | Q(post_title__icontains=query)
+        )
+
 class JobListView(LoginRequiredMixin, ListView):
     model = Job
     template_name = "jobs/job_list.html"

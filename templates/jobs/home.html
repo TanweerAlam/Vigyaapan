@@ -10,6 +10,8 @@ jobs/home page
 
 
 {% block content %}
-    
+    <form action="{% url 'jobs:search_results' %}" method="get">
+        <input name="q" type="text" placeholder="Search" aria-label="Search">
+    </form>
 {% endblock content %}
         

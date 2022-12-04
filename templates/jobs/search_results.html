@@ -1,0 +1,15 @@
+<!-- templates/books/search_results.html -->
+{% extends 'base.html' %}
+
+{% block title %}Search{% endblock title %}
+
+{% block content %}
+    <h1>Search Results</h1>
+
+    {% for job in job_list %}
+        <div>
+        <h3><a href="{{ job.get_absolute_url }}">{{ job.post_title }}</a></h3>
+        <p>Author: {{ job.author }}</p>
+        </div>
+    {% endfor %}
+{% endblock content %}

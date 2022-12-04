@@ -6,7 +6,7 @@ class JobSitemap(Sitemap):
     priority = 0.8
 
     def item(self):
-        return Job.objects.filter(isPublished=True)  
+        return Job.objects.all()
 
     def lastmod(self, obj):
         return obj.created_on
