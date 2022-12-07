@@ -10,4 +10,5 @@ class CustomUser(AbstractUser):
         ('other', _('Other'))
     ]
     gender = models.CharField(max_length=10, choices=GENDER)
-    
+
+    # USERNAME_FIELD = 'email'

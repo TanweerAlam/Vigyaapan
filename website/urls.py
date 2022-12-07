@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+# views for error handler
+from . import views
 # sitemap
 from django.contrib.sitemaps.views import sitemap
 from jobs.sitemaps import JobSitemap
@@ -31,3 +33,8 @@ urlpatterns = [
     path('', include('jobs.urls', namespace="jobs")),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
 ]
+
+handler404 = "views.page_not_found_view"
+# handler500 = "views.server_error_view"
+handler403 = "views.permission_denied_view"
+# handler400 = "views.bad_request_view"

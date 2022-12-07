@@ -88,4 +88,4 @@ class Job(models.Model):
 
     
     def get_absolute_url(self):
-        return reverse('jobs:jobDetail', kwargs={'slug': self.slug})
+        return reverse('jobs:jobDetail', kwargs={"slug": self.slug})

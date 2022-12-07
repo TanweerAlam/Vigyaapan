@@ -1,3 +1,4 @@
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.generic.base import TemplateView
 from django.views.generic import ListView, DetailView, CreateView, DeleteView 
@@ -6,7 +7,7 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import (LoginRequiredMixin, UserPassesTestMixin)
 from django.db.models import Q
 
-from .models import Job
+from .models import Job, State
 from .forms import JobCreationUpdationForm
 
 # Create your views here.
@@ -61,3 +62,27 @@ class JobDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     def test_func(self):
         obj = self.get_object()
         return obj.author == self.request.user
+
+
+class SuperUserPassesTestMixin(LoginRequiredMixin, UserPassesTestMixin):
+    def test_func(self):
+        return self.request.user.is_superuser
+    
+    def handle_no_permission(self):
+        return HttpResponse('<h1>Sorry, you are not authorised to access this page. Please, ask the admin...</h1>')
+
+class StateListView(SuperUserPassesTestMixin, ListView):
+    model = State
+    template_name = 'jobs/state_list.html'
+
+class StateCreateView(SuperUserPassesTestMixin, CreateView):
+    model = State
+    template_name = 'jobs/add_update_state.html'
+
+class StateUpdateView(SuperUserPassesTestMixin, UpdateView):
+    model = State
+    template_name = 'jobs/add_update_state.html'
+
+class StateDeleteView(SuperUserPassesTestMixin, DeleteView):
+    model = State
+    template_name = 'jobs/delete_state.html'

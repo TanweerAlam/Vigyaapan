@@ -1,0 +1,17 @@
+{% extends 'master.html' %}
+{% load static %}
+
+
+{% block pagetitle %}
+    | State List
+{% endblock pagetitle %}
+    
+
+{% block content %}
+  <div>
+    {% for state in state_list %}
+        <a href="{% url '' %}"><p>{{ state.state }}</p></a>
+    {% endfor %}
+  </div>  
+{% endblock content %}
+    

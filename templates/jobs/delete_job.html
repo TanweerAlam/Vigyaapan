@@ -5,7 +5,7 @@
 <!-- {% load crispy_forms_filters %} -->
 
 {% block pagetitle %}
-    | Add job
+    | Delete job
 {% endblock pagetitle %}
     
 
@@ -13,7 +13,7 @@
   <div>
     <form action="" method="post">
         {% csrf_token %}
-        <p>Are you sure you want to delete "{{ object }}"?</p>
+        <p>Are you sure you want to delete job "{{ object.post_title }}"?</p>
         <input type="submit" value="Confirm" />
     </form>
   </div>  
