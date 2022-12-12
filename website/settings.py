@@ -52,8 +52,10 @@ INSTALLED_APPS = [
     # Local app
     'main',
     'jobs',
+    'newsletters',
 
     # Third-party batteries
+    'tinymce',
     'crispy_forms',
     "crispy_bootstrap5",
     
@@ -74,7 +76,7 @@ ROOT_URLCONF = 'website.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')],
+        'DIRS': [str(BASE_DIR.joinpath('templates'))],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -139,6 +141,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# For uploading newsletter content
+MEDIA_URL = 'uploaded_newsletters/'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
@@ -159,9 +164,37 @@ AUTH_USER_MODEL = "users.CustomUser"
 # EMAIL_HOST = "localhost"
 # EMAIL_PORT = 1025
 
-# Using mailgun for as Email backend
-EMAIL_HOST = env('SMTP_HOSTNAME')
-EMAIL_PORT = env('SMTP_PORT')
-EMAIL_HOST_USER = env('SMTP_USERNAME')
-EMAIL_HOST_PASSWORD = env('SMTP_PASSWORD')
+# Using mailgun as Email backend
+# EMAIL_HOST = env('SMTP_HOSTNAME')
+# EMAIL_PORT = env('SMTP_PORT')
+# EMAIL_HOST_USER = env('SMTP_USERNAME')
+# EMAIL_HOST_PASSWORD = env('SMTP_PASSWORD')
+# EMAIL_USE_TLS = True
+
+# Using sendgrid for Newsletters app
+FROM_EMAIL = "admin@admin.com"
+SENDGRID_API_KEY = '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'
+
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER = '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' # this is exactly the value 'apikey'
+EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
+EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+
+
+# Tinymce settings
+TINYMCE_DEFAULT_CONFIG = {
+    'height' : "480",
+    "menubar": "file edit view insert format tools table help",
+    "plugins": "advlist autolink lists link image charmap preview anchor"
+    "fullscreen insertdatetime media table paste code help wordcount",
+    "toolbar": "undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft "
+    "aligncenter alignright alignjustify | outdent indent |  numlist bullist checklist | forecolor "
+    "backcolor casechange permanentpen formatpainter removeformat | pagebreak | charmap emoticons | "
+    "fullscreen  preview save print | insertfile image media pageembed template link anchor codesample | "
+    "a11ycheck ltr rtl | showcomments addcomment code",
+    "custom_undo_redo_levels": 10,
+#     # "language": "en_us",  # To force a specific language instead of the Django current language.
+    'theme': "silver",
+}
+# TINYMCE_COMPRESSOR = True

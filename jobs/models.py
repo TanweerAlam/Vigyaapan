@@ -6,6 +6,8 @@ from django.urls import reverse
 
 from django.conf import settings
 from django.contrib.auth import get_user_model
+from tinymce.models import HTMLField
+
 
 # Create your models here.
 class State(models.Model):
@@ -40,7 +42,8 @@ class Job(models.Model):
     state = models.ForeignKey(State, on_delete=models.SET_NULL, default=None, null=True, blank=True)
 
     brief_intro = models.TextField(max_length=500, default='Brief introduction of the job post')
-    body = models.TextField(max_length=500, default='Information of the job post', null=True, blank=True)
+    # body = models.TextField(max_length=500, default='Information of the job post', null=True, blank=True)
+    content = HTMLField()
     
     notification_date = models.DateField(null=True, blank=True)
     online_application_date = models.DateField(null=True, blank=True)

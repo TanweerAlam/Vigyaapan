@@ -5,6 +5,7 @@ import datetime
 from .models import Job, State
 
 from django.utils.translation import gettext_lazy as _
+from tinymce.widgets import TinyMCE
 
 
 # QUALIFICATION = [
@@ -78,6 +79,7 @@ class JobCreationUpdationForm(ModelForm):
         exclude = ('slug', 'author')
         fields = ('__all__')
         post_title = forms.CharField(widget=forms.TextInput(attrs={'class': "form-control", 'place-holder': 'Title'})),
+        content = forms.CharField(widget=TinyMCE(attrs={'cols': 80, 'rows': 30}))
         widgets = {
             'notification_date': widgets.DateInput(attrs={'type': 'date', 'max': date.today()}),
             'online_application_date': widgets.DateInput(attrs={'type': 'date', 'min': date.today().year - 1}),
