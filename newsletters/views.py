@@ -8,6 +8,7 @@ import random
 from sendgrid.helpers.mail import Mail
 
 
+
 # Create your views here.
 def random_digits():
     return "%0.12d" % random.randint(0, 999999999999)

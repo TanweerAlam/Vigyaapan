@@ -140,6 +140,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+STATIC_ROOT  = os.path.join(BASE_DIR, 'staticfiles')
 
 # For uploading newsletter content
 MEDIA_URL = 'uploaded_newsletters/'
@@ -172,14 +176,14 @@ AUTH_USER_MODEL = "users.CustomUser"
 # EMAIL_USE_TLS = True
 
 # Using sendgrid for Newsletters app
-FROM_EMAIL = "admin@admin.com"
+FROM_EMAIL = "tannumystic@gmail.com"
 SENDGRID_API_KEY = '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'
 
-EMAIL_HOST = 'smtp.sendgrid.net'
-EMAIL_HOST_USER = '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' # this is exactly the value 'apikey'
-EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
+# EMAIL_HOST = 'smtp.sendgrid.net'
+# EMAIL_HOST_USER = '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' # this is exactly the value 'apikey'
+# EMAIL_HOST_PASSWORD = SENDGRID_API_KEY
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
 
 
 # Tinymce settings
@@ -198,3 +202,10 @@ TINYMCE_DEFAULT_CONFIG = {
     'theme': "silver",
 }
 # TINYMCE_COMPRESSOR = True
+
+# Django-sendgrid-v5 settings
+EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
+# Toggle sandbox mode (when running in DEBUG mode)
+SENDGRID_SANDBOX_MODE_IN_DEBUG=False
+# echo to stdout or any other file-like object that is passed to the backend via the stream kwarg.
+SENDGRID_ECHO_TO_STDOUT=True

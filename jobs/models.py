@@ -64,8 +64,12 @@ class Job(models.Model):
     official_site = models.URLField(null=True, blank=True, default='')
     admit_card_link = models.URLField(null=True, blank=True, default='')
     notification_link = models.URLField(null=True, blank=True, default='')
+    result_link = models.URLField(null=True, blank=True, default='')
+    syllabus_link = models.URLField(null=True, blank=True, default='')
 
-    isPublished = models.BooleanField(default=False, verbose_name="Published?")
+    is_featured = models.BooleanField(default=False, verbose_name="Featured job?")
+
+    is_published = models.BooleanField(default=False, verbose_name="Published?")
 
     created_on = models.DateField(auto_now_add=True, editable=False)
     updated_on = models.DateField(auto_now=True)

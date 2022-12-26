@@ -17,6 +17,10 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
+
+from django.conf import settings
+from django.conf.urls.static import static
+
 # views for error handler
 # from . import views
 # sitemap
@@ -36,7 +40,9 @@ urlpatterns = [
     path('', include('main.urls', namespace="main")),
     path('', include('jobs.urls', namespace="jobs")),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
-]
+] 
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # handler404 = "views.page_not_found_view"
 # # handler500 = "views.server_error_view"
