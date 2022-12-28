@@ -1,15 +1,144 @@
 {% extends 'base.html' %}
 {% load static %}
-
-
-{% block pagetitle %}
-    | {{ job.post_title }}
-{% endblock pagetitle %}
     
-
-{% block content %}
-  <div>
-    <h1>{{ job.post_title }}</h1>
-  </div>  
-{% endblock content %}
+    {% block extra_sheets %}
+      <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    {% endblock extra_sheets %}
+        
     
+    {% block content %}
+    <div class="first-card">
+        <div id="logo"><img src="/IMAGE/bpsc.jpeg" alt="BPSC logo"></div>
+        <br>
+        <hr>
+        <!-- <h1>Bihar BPSC 68th Recruitment 2022 Apply Online for 281 Post</h1> -->
+        <h1>{{ object.post_title }} {{ object.application_mode }} 
+        {% if object.total_posts %}
+          for {{ object.total_posts }} posts
+        {% endif %}
+           </h1>
+        <hr>
+        <br>
+        
+        {% if object.notification_date %}
+          <h2>{{ object.notification_date }}</h2>
+        {% endif %}
+          
+        <br>
+        <p>
+          {{ object.brief_intro}}
+        </p>
+        <ul>
+          <li>Minimum qualification: {{object.minimum_qualification}} </li>
+        </ul>
+      </div>
+  
+      <div class="second-card">
+        <hr>
+        <h1>{{object.post_title}} Complete Notification</h1>
+        <hr>
+        <br>
+        
+        {% if object.notification_link %}
+          <h2><a href="{{ object.notification_link }}">www.sarkaridomain.com</a></h2>
+        {% else %}
+          <h2>Will be updated soon...</a></h2>
+        {% endif %}
+          
+        <br>
+      </div>
+  
+      <div class="small-card">
+        <div class="third-card">
+          <br>
+          <hr>
+          <h1>Important Dates</h1>
+          <hr>
+          <br>
+          <ul>
+            <li>Application Begin : 
+            {% if object.online_application_date %}
+              {{object.online_application_date}}
+            {% else %}
+              To be announced
+            {% endif %}
+              </li>
+            <li>Last Date for Apply Online : 
+            {% if object.application_expiry_date %}
+              {{object.application_expiry_date}}
+            {% else %}
+              To be announced
+            {% endif %}
+            </li>
+            <li>Pay Exam Fee Last Date : 30/12/2022</li>
+            <li>Correction Last Date : 30/12/2022</li>
+            <li>Exam Date : As per Schedule</li>
+          </ul>
+        </div>
+        <div class="fourth-card">
+          <br>
+          <hr>
+          <h1>Application Fee</h1>
+          <hr>
+          <br>
+          <ul>
+            <li>General / OBC/ Other State : 600/-</li>
+            <li>SC / ST / PH : 150/-</li>
+            <li>Female Candidate (Bihar Dom.) : 150/-</li>
+            <li>Pay the Exam Fee Through Online / Offline Fee Mode Only</li>
+          </ul>
+        </div>
+      </div>
+      <div class="fifth-card">
+        <br>
+        <hr>
+        <h1>Age Limit</h1>
+        <!-- <h1>{{ object.post_title }} Age Limit as on 01/08/2022</h1> -->
+        <hr>
+        <br>
+        <ul>
+          <li>Minimum Age : {{ object.minimum_age }} Years (Post Wise)</li>
+          <li>Maximum Age : {{ object.maximum_age }} Years</li>
+          <!-- <li>Maximum Age : 40 Female</li> -->
+          <li>Age Relaxation Extra as per BPSC 68 Pre Rules.</li>
+        </ul>
+      </div>
+      <div class="sixth-card">
+        <br>
+        <hr>
+        <h1>Some Useful Important Links</h1>
+        <hr>
+        <br>
+        <div class="grid-container">
+          
+          {% if object.application_link %}
+            <a href="" class="text-decoration-none"><div class="grid-item">Apply online</div></a>
+          {% else %}
+            <div class="grid-item">Application link will be updated soon...</div>
+          {% endif %}
+
+          {% if object.application_link %}
+            <a href="" class="text-decoration-none"><div class="grid-item">Download notification</div></a>
+          {% else %}
+            <div class="grid-item">Notification link will be updated soon...</div>
+          {% endif %}
+
+          {% if object.application_link %}
+            <a href="" class="text-decoration-none"><div class="grid-item">Download result</div></a>
+          {% else %}
+            <div class="grid-item">Result link will be updated soon...</div>
+          {% endif %}
+
+          {% if object.application_link %}
+            <a href="" class="text-decoration-none"><div class="grid-item">Official website</div></a>
+          {% else %}
+            <div class="grid-item">Official website link will be updated soon...</div>
+          {% endif %}
+
+          <a href="" class="text-decoration-none"><div class="grid-item">Join us on Telegram</div></a>
+            
+        </div>
+      </div>
+    {% endblock content %}
+  
+

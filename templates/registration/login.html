@@ -6,12 +6,11 @@
 
 
 {% block extra_sheets %}
-    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'css/login.css' %}"> -->
 {% endblock extra_sheets %}
     
 
 {% block content %}
-<h2>Login</h2>
 
 <!-- <form method="post">
     {% csrf_token %}
@@ -22,7 +21,7 @@
 <a href="{% url 'users:dashboard' %}">Back to dashboard</a>
 <a href="{% url 'password_reset' %}">Reset password</a> -->
 
-<div class="container">
+<!-- <div class="container">
     <div class="row">
       <div class="col-md-6 offset-md-3">
         <h2 class="text-center text-dark mt-5">Login Form</h2>
@@ -53,6 +52,40 @@
           </form>
         </div>
 
+      </div>
+    </div>
+  </div> -->
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card border-0 shadow rounded-3 my-5">
+          <div class="card-body p-4 p-sm-5">
+            <h2 class="card-title text-center mb-5">Sign In</h2>
+            <form method="post">
+              {% csrf_token %}
+              <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="floatingInput" name="username" placeholder="name@example.com">
+                <label for="floatingInput">Email address</label>
+              </div>
+              <div class="form-floating mb-3">
+                <input type="password" class="form-control" id="floatingPassword" name="password" placeholder="Password">
+                <label for="floatingPassword">Password</label>
+              </div>
+              <div class="d-grid">
+                <p><a href="">Forgotten password?</a></p>
+              </div>
+              <div class="d-grid">
+                <button class="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Sign
+                  in</button>
+              </div>
+              <hr class="my-4">
+              <div class="d-grid mb-2">
+                <p>Not registered yet? <a href="">Sign up now!</a></p>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
   </div>

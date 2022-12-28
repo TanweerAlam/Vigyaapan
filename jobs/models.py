@@ -44,6 +44,7 @@ class Job(models.Model):
     brief_intro = models.TextField(max_length=500, default='Brief introduction of the job post')
     # body = models.TextField(max_length=500, default='Information of the job post', null=True, blank=True)
     content = HTMLField()
+    # exam_fee = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(3000)])
     
     notification_date = models.DateField(null=True, blank=True)
     online_application_date = models.DateField(null=True, blank=True)
@@ -66,6 +67,7 @@ class Job(models.Model):
     notification_link = models.URLField(null=True, blank=True, default='')
     result_link = models.URLField(null=True, blank=True, default='')
     syllabus_link = models.URLField(null=True, blank=True, default='')
+    # answerkey_link = models.URLField(null=True, blank=True, default='')
 
     is_featured = models.BooleanField(default=False, verbose_name="Featured job?")
 
@@ -96,3 +98,19 @@ class Job(models.Model):
     
     def get_absolute_url(self):
         return reverse('jobs:jobDetail', kwargs={"slug": self.slug})
+
+
+# class Admission(models.Model):
+    
+#     admission_name
+# Post date
+# Short information
+# Important dates
+# Application fees 
+# Course name
+# Eligibility
+# Instructions
+# Links
+
+#     def __str__(self):
+#         return self.admission_name

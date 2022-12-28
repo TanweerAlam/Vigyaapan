@@ -22,16 +22,18 @@ class SearchListView(ListView):
 
     # queryset = Job.objects.filter(post_title__icontains="engineers")
     def get_queryset(self):
-        query = self.request.GET.get('q')
-        return Job.objects.filter(
-            Q(post_title__icontains=query) | Q(post_title__icontains=query)
-        )
+        query = self.request.GET.get('search', None)
+        if query:
+            return Job.objects.filter(
+                Q(post_title__icontains=query) | Q(post_title__icontains=query)
+            )
+        
 
 class JobListView(LoginRequiredMixin, ListView):
     model = Job
     template_name = "jobs/job_list.html"
 
-class JobDetailView(LoginRequiredMixin, DetailView):
+class JobDetailView(DetailView):
     model = Job
     template_name = "jobs/job_detail.html"
     # pk_url_kwarg = 'pk'

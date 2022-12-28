@@ -4,12 +4,33 @@
 {% block title %}Search{% endblock title %}
 
 {% block content %}
-    <h1>Search Results</h1>
-
-    {% for job in job_list %}
-        <div>
-        <h3><a href="{{ job.get_absolute_url }}">{{ job.post_title }}</a></h3>
-        <p>Author: {{ job.author }}</p>
+    {% include 'partials/_search_hero.html' %}
+    <div class="container my-5 text-center">
+        <div class="row">
+            
+            {% if not job_list %}
+                <h1>No results</h1>
+            {% else %}
+                <h1>Search results</h1>
+            {% endif %}
+                
         </div>
-    {% endfor %}
+        <div class="row">
+            <ul>
+                
+                {% if job_list %}
+                    {% for job in job_list %}
+                        <a href="{{ job.get_absolute_url }}" class="text-decoration-none">
+                            <li>{{ job.post_title }}</li>
+                            <span class="text-end text-muted">{{job.}}</span>
+                        </a>
+                    {% endfor %}
+                {% endif %}
+                    
+            </ul>
+        </div>
+
+
+    </div>
+
 {% endblock content %}
