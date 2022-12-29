@@ -58,7 +58,7 @@ INSTALLED_APPS = [
     'tinymce',
     'crispy_forms',
     "crispy_bootstrap5",
-    
+    "django_social_share"
 ]
 
 MIDDLEWARE = [
