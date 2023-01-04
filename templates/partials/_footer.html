@@ -1,16 +1,37 @@
+{% load static %}
 <!-- Footers -->
   <footer class="footer_area section_padding_130_0 bg-white">
+
+    <div class="container my-3">
+      <div class="row justify-content-center">
+        <div class="col-8 col-sm-8">
+          <form action="" method="post" class="row d-flex flex-row">
+            <!-- <div class="col-8"> -->
+              <input type="email" name="email" placeholder="Email..." class="col-8 col-sm-6">
+            <!-- </div> -->
+            <!-- <div class="col-3"> -->
+              <input type="submit" value="Subscribe" class="col-6 col-sm-4">
+            <!-- </div> -->
+          </form>
+        </div>
+
+      </div>
+    </div>
 
     <div class="container">
       <div class="row">
         <!-- Single Widget-->
         <div class="col-12 col-sm-6 col-lg-4 my-3">
-          <div class="single-footer-widget section_padding_0_130">
+          <div class="single-footer-widget">
             <!-- Footer Logo-->
-            <div class="footer-logo mb-3"></div>
-            <p>Appland is completely creative, lightweight, clean app landing page.</p>
+            <div class="footer-logo">
+            <img src="{% static 'img/logo.png' %}" alt="SarkariVigyaapan" style="height: 60px; margin-top: -10px;" class="d-inline-block align-text-top">
+
+            </div>
+            <!-- <p>Appland is completely creative, lightweight, clean app landing page.</p> -->
+
             <!-- Copywrite Text-->
-            <div class="copywrite-text mb-5">
+            <div class="copywrite-text mb-4">
               <p class="mb-0">Made with <i class="lni-heart mr-1"></i>by<a class="ml-1" href="https://wrapbootstrap.com/user/DesigningWorld">Designing World</a></p>
             </div>
             <!-- Footer Social Area-->
@@ -35,49 +56,46 @@
         </div>
         <!-- Single Widget-->
         <div class="col-12 col-sm-6 col-lg my-3">
-          <div class="single-footer-widget section_padding_0_130">
+          <div class="single-footer-widget">
             <!-- Widget Title-->
             <h5 class="widget-title">About</h5>
             <!-- Footer Menu-->
             <div class="footer_menu">
               <ul>
-                <li><a href="#">About Us</a></li>
-                <li><a href="#">Corporate Sale</a></li>
-                <li><a href="#">Terms &amp; Policy</a></li>
-                <li><a href="#">Community</a></li>
+                <li><a href="{% url 'main:about' %}">About Us</a></li>
+                <li><a href="{% url 'main:privacy-policy' %}">Privacy Policy</a></li>
+                <li><a href="{% url 'main:disclaimer' %}">Disclaimer</a></li>
+                <li><a href="{% url 'main:tnc' %}">Terms &amp; Conditions</a></li>
               </ul>
             </div>
           </div>
         </div>
         <!-- Single Widget-->
         <div class="col-12 col-sm-6 col-lg my-3">
-          <div class="single-footer-widget section_padding_0_130">
-            <!-- Widget Title-->
-            <h5 class="widget-title">Support</h5>
-            <!-- Footer Menu-->
-            <div class="footer_menu">
-              <ul>
-                <li><a href="#">Help</a></li>
-                <li><a href="#">Support</a></li>
-                <li><a href="#">Privacy Policy</a></li>
-                <li><a href="#">Term &amp; Conditions</a></li>
-                <li><a href="#">Help &amp; Support</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <!-- Single Widget-->
-        <div class="col-12 col-sm-6 col-lg my-3">
-          <div class="single-footer-widget section_padding_0_130">
+          <div class="single-footer-widget">
             <!-- Widget Title-->
             <h5 class="widget-title">Contact</h5>
             <!-- Footer Menu-->
             <div class="footer_menu">
               <ul>
-                <li><a href="#">Call Centre</a></li>
-                <li><a href="#">Email Us</a></li>
-                <li><a href="#">Term &amp; Conditions</a></li>
-                <li><a href="#">Help Center</a></li>
+                <li><a href="{% url 'main:contact' %}">Email Us</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <!-- Single Widget-->
+        <div class="col-12 col-sm-6 col-lg my-3">
+          <div class="single-footer-widget">
+            <!-- Widget Title-->
+            <h5 class="widget-title">Miscellaneous</h5>
+            <!-- Footer Menu-->
+            <div class="footer_menu">
+              <ul>
+                <li><a href="/sitemap.xml">Sitemap</a></li>
+                <li><a href="{% url 'jobs:search_results' %}">Find jobs</a></li>
+                <li><a href="#">Tags</a></li>
+                <li><a href="#">Archive</a></li>
+                <!-- <li><a href="#">Help &amp; Support</a></li> -->
               </ul>
             </div>
           </div>

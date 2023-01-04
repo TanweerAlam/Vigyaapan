@@ -17,6 +17,10 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
       rel="stylesheet"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
     <link rel="stylesheet" href="{% static 'css/footer_style.css' %}">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 
@@ -50,18 +54,22 @@
     <meta name="twitter:image" content="https://www.djangoproject.com/static/assets/logo.png">
     <!-- ..... -->
     <title>
-        Sarkaariwaala 
+        SarkariVigyaapan |  
         {% block pagetitle %}
             
         {% endblock pagetitle %}
     </title>
-    {{ form.media }}
+    
+    {% block head %}
+      {{ form.media }}
+    {% endblock head %}
+      
 </head>
 <body>
 
     {% include 'partials/_header.html' %}
     
-    
+
     {% block content %}
         
     {% endblock content %}

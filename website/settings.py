@@ -58,7 +58,8 @@ INSTALLED_APPS = [
     'tinymce',
     'crispy_forms',
     "crispy_bootstrap5",
-    "django_social_share"
+    "django_social_share",
+    "taggit",
 ]
 
 MIDDLEWARE = [
@@ -209,3 +210,6 @@ EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
 SENDGRID_SANDBOX_MODE_IN_DEBUG=False
 # echo to stdout or any other file-like object that is passed to the backend via the stream kwarg.
 SENDGRID_ECHO_TO_STDOUT=True
+
+# Django-Taggit
+TAGGIT_CASE_INSENSITIVE = True

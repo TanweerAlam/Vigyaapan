@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+
+{% block pagetitle %}
+    
+{% endblock pagetitle %}
+    
+
+{% block content %}
+    <div class="container my-5 p-5 text-center">
+        <div class="row">
+            
+            {% if keyword == 'admission' %}
+                <h1>Admission</h1>
+            {% else %}
+                <h1>Job notifications by {{keyword}}</h1>
+            {% endif %}
+                
+        </div>
+        <!--  -->
+        <div class="row justify-content-center">
+
+            <div class="col-sm-8 my-3">
+              <div class="card bg-white py-3 px-3">
+
+                <ul class="list-group list-group-flush bg-transparent">
+                  
+                    {% if page_obj %}
+                        {% for job in page_obj %}
+                            
+                            <a class="list-group-item bg-transparent" href="{% url 'jobs:jobDetail' job.slug %}">{{ job.post_title }}</a>
+
+                        {% endfor %}
+                    {% endif %}
+                  
+                          
+                </ul>
+              </div>
+            </div>
+          </div>
+
+    </div>
+
+    {% include 'partials/_pagination.html' %}
+
+{% endblock content %}
+    

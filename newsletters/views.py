@@ -6,6 +6,7 @@ from .models import Subscriber
 from .forms import SubscriberForm
 import random
 from sendgrid.helpers.mail import Mail
+from sendgrid import SendGridAPIClient
 
 
 

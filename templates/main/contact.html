@@ -4,18 +4,80 @@
 main/contact page
 
 
+{% block extra_sheets %}
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+{% endblock extra_sheets %}
+    
+
+
 {% block pagetitle %}
     | {{ site.page }}
 {% endblock pagetitle %}
 
 
 {% block content %}
-Contact form
-<form action="{% url 'main:contact'  %}" method="post">
+<!-- Contact form -->
+<!-- <form action="{% url 'main:contact'  %}" method="post">
     {% csrf_token %}
     {{ form.as_p}}
     <button type="submit">Submit</button>
-</form>
+</form> -->
+
+
+<div class="container-fluid m-0 p-0">
+    <div class="row d-flex align-items-center bg-white py-3">
+        <div class="image col-12 col-sm-6 m-0 p-0">
+            <img src="{% static 'img/contact.jpg' %}" alt="contact">
+        </div>
+
+        <div class="form-container col-12 col-sm-6 m-0 p-5">
+            <form action="{% url 'main:contact'  %}" method="post">
+              {% csrf_token %}
+              {{ form.as_p}}
+              
+              <!-- <label for="fname">First Name</label>
+              <input type="text" id="fname" name="firstname" placeholder="Your name..">
+          
+              <label for="lname">Last Name</label>
+              <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+    
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="Your email address..">
+               
+              <label for="subject">Subject</label>
+              <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+           -->
+              <input type="submit" value="Submit">
+            </form>
+          </div>
+    </div>
+    <!-- <div class="box">
+        <div class="image">
+            <img src="{% static 'img/contact.jpg' %}" alt="contact">
+          </div>
+    
+        <div class="form-container">
+            <form action="action_page.php">
+          
+              <label for="fname">First Name</label>
+              <input type="text" id="fname" name="firstname" placeholder="Your name..">
+          
+              <label for="lname">Last Name</label>
+              <input type="text" id="lname" name="lastname" placeholder="Your last name..">
+    
+              <label for="email">Email</label>
+              <input type="email" id="email" name="email" placeholder="Your email address..">
+               
+              <label for="subject">Subject</label>
+              <textarea id="subject" name="subject" placeholder="Write something.." style="height:200px"></textarea>
+          
+              <input type="submit" value="Submit">
+          
+            </form>
+          </div>
+    </div> -->
+</div>
+
     
 {% endblock content %}
         

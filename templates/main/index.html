@@ -3,7 +3,10 @@
 {% load social_share %}
 
 
-main/Index page
+{% block extra_sheets %}
+  <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+{% endblock extra_sheets %}
+  
 
 
 {% block pagetitle %}
@@ -12,6 +15,11 @@ main/Index page
 
 
 {% block content %}
+    <div class="container mt-4">
+      <div class="row">
+        <h1 id="welcome-text">Welcome to <span class="animate__animated animate__bounceIn d-inline-block">Sarkari Vigyaapan</span></h1>
+      </div>
+    </div>
     <!-- Hero section -->
     {% include 'partials/_search_hero.html' %}
     <!-- Hero section ends here -->
@@ -25,315 +33,22 @@ main/Index page
       <div class="row">
         <h3 class="sectional-heading" style="padding: 10px;">Category</h3>
       </div>
-      <!-- <div class="row overflow-x justify-content-evenly align-items-center">
 
-        <div class="col-sm-4 col-5 border btn btn-outline-success">
-          <div>
-            <img
-              src="https://jthemes.com/themes/wp/jobbox/wp-content/uploads/2022/10/human-resource.png"
-              alt="UPSC"
-            />
-          </div>
-          <div>
-            <h6>UPSC</h6>
-            <p class="muted-text">1 new job available</p>
-          </div>
-        </div>
+      <!-- Tags -->
+      <div class="container">
+        <div class="row justify-content-center">
+          <ul class="nav nav-pills container justify-content-center">
+           
+            {% for category in categories %}
+              <li class="nav-item mx-1 my-1 category-pill bg-light">
+                <a class="nav-link" aria-current="page" href="">{{category.name}}</a>
+              </li>
+            {% endfor %}
 
-        <div class="col-sm-4 col-5 border btn btn-outline-success">
-          <div>
-            <img
-              src="https://jthemes.com/themes/wp/jobbox/wp-content/uploads/2022/10/human-resource.png"
-              alt="UPSC"
-            />
-          </div>
-          <div>
-            <h6>UPSC</h6>
-            <p class="muted-text">1 new job available</p>
-          </div>
-        </div>
-
-        <div class="col-sm-4 col-5 border btn btn-outline-success">
-          <div>
-            <img
-              src="https://jthemes.com/themes/wp/jobbox/wp-content/uploads/2022/10/human-resource.png"
-              alt="UPSC"
-            />
-          </div>
-          <div>
-            <h6>UPSC</h6>
-            <p class="muted-text">1 new job available</p>
-          </div>
-        </div>
-
-        <div class="col-sm-4 col-5 border btn btn-outline-success">
-          <div>
-            <img
-              src="https://jthemes.com/themes/wp/jobbox/wp-content/uploads/2022/10/human-resource.png"
-              alt="UPSC"
-            />
-          </div>
-          <div>
-            <h6>UPSC</h6>
-            <p class="muted-text">1 new job available</p>
-          </div>
-        </div>
-
-        <div class="col-sm-4 col-5 border btn btn-outline-success">
-          <div>
-            <img
-              src="https://jthemes.com/themes/wp/jobbox/wp-content/uploads/2022/10/human-resource.png"
-              alt="UPSC"
-            />
-          </div>
-          <div>
-            <h6>UPSC</h6>
-            <p class="muted-text">1 new job available</p>
-          </div>
-        </div>
-
-        <div class="col-sm-4 col-5 border btn btn-outline-success">
-          <div>
-            <img
-              src="https://jthemes.com/themes/wp/jobbox/wp-content/uploads/2022/10/human-resource.png"
-              alt="UPSC"
-            />
-          </div>
-          <div>
-            <h6>UPSC</h6>
-            <p class="muted-text">1 new job available</p>
-          </div>
-        </div>    
-
-      </div> -->
-      <!-- Swiper -->
-      <div class="container overflow-hidden">
-        <!-- Slider main container -->
-        <div class="swiper">
-          <!-- Additional required wrapper -->
-          <div class="swiper-wrapper">
-            <!-- Slides -->
-            <div class="swiper-slide d-flex flex-column">
-  
-              <div class="d-flex border rounded container-fluid my-5 cards">
-                <div class="row d-flex flex-row p-0">
-                  <div class="col-3 d-flex justify-content-center align-items-center p-0 m-0">
-                    <img src="https://wp.alithemes.com/html/jobbox/demos/assets/imgs/page/homepage1/human.svg" class="img-fluid" alt="upsc" >
-                  </div>
-                  <div class="col-9 p-0 m-0">
-                      <h2 class="text-start">Upsc</h2>
-                      <p class="text-start text-muted">3 jobs available bhoo</p>
-                  </div>
-                </div>
-  
-                <!-- <div class="img-area  align-self-center">
-                    <img src="https://wp.alithemes.com/html/jobbox/demos/assets/imgs/page/homepage1/human.svg" class="img-fluid" alt="upsc" >
-                </div>
-                <div class="img-text justify-content-start align-self-center">
-                    <h2 class="text-start">Upsc</h2>
-                    <p class="text-start text-muted">3 jobs available</p>
-                </div> -->
-  
-              </div>
-              <div class="d-flex border rounded container-fluid my-5 cards">
-                  <div class="img-area  align-self-center">
-                      <img src="https://wp.alithemes.com/html/jobbox/demos/assets/imgs/page/homepage1/human.svg" alt="upsc" >
-                  </div>
-                  <div class="img-text  align-self-center">
-                      <h2>Upsc</h2>
-                      <p class="text-muted">3 jobs available</p>
-                  </div>
-              </div>
-  
-            </div>
-            <!--  -->
-            <!-- Slides -->
-            <div class="swiper-slide d-flex flex-column">
-  
-              <div class="d-flex border rounded container-fluid my-5 cards">
-                <div class="row d-flex flex-row p-0">
-                  <div class="col-3 d-flex justify-content-center align-items-center p-0 m-0">
-                    <img src="https://wp.alithemes.com/html/jobbox/demos/assets/imgs/page/homepage1/human.svg" class="img-fluid" alt="upsc" >
-                  </div>
-                  <div class="col-9 p-0 m-0">
-                      <h2 class="text-start">Upsc</h2>
-                      <p class="text-start text-muted">3 jobs available bhoo</p>
-                  </div>
-                </div>
-  
-              </div>
-  
-              <div class="d-flex border rounded container-fluid my-5 cards">
-                  <div class="img-area  align-self-center">
-                      <img src="https://wp.alithemes.com/html/jobbox/demos/assets/imgs/page/homepage1/human.svg" alt="upsc" >
-                  </div>
-                  <div class="img-text  align-self-center">
-                      <h2>Upsc</h2>
-                      <p class="text-muted">3 jobs available</p>
-                  </div>
-              </div>
-  
-            </div>
-            <!--  -->
-            <!-- Slides -->
-            <div class="swiper-slide d-flex flex-column">
-  
-              <div class="d-flex border rounded container-fluid my-5 cards">
-                <div class="row d-flex flex-row p-0">
-                  <div class="col-3 d-flex justify-content-center align-items-center p-0 m-0">
-                    <img src="https://wp.alithemes.com/html/jobbox/demos/assets/imgs/page/homepage1/human.svg" class="img-fluid" alt="upsc" >
-                  </div>
-                  <div class="col-9 p-0 m-0">
-                      <h2 class="text-start">Upsc</h2>
-                      <p class="text-start text-muted">3 jobs available bhoo</p>
-                  </div>
-                </div>
-  
-              </div>
-  
-              <div class="d-flex border rounded container-fluid my-5 cards">
-                  <div class="img-area  align-self-center">
-                      <img src="https://wp.alithemes.com/html/jobbox/demos/assets/imgs/page/homepage1/human.svg" alt="upsc" >
-                  </div>
-                  <div class="img-text  align-self-center">
-                      <h2>Upsc</h2>
-                      <p class="text-muted">3 jobs available</p>
-                  </div>
-              </div>
-  
-            </div>
-            <!--  -->
-            <!-- Slides -->
-            <div class="swiper-slide d-flex flex-column">
-  
-              <div class="d-flex border rounded container-fluid my-5 cards">
-                <div class="row d-flex flex-row p-0">
-                  <div class="col-3 d-flex justify-content-center align-items-center p-0 m-0">
-                    <img src="https://wp.alithemes.com/html/jobbox/demos/assets/imgs/page/homepage1/human.svg" class="img-fluid" alt="upsc" >
-                  </div>
-                  <div class="col-9 p-0 m-0">
-                      <h2 class="text-start">Upsc</h2>
-                      <p class="text-start text-muted">3 jobs available bhoo</p>
-                  </div>
-                </div>
-  
-              </div>
-  
-              <div class="d-flex border rounded container-fluid my-5 cards">
-                  <div class="img-area  align-self-center">
-                      <img src="https://wp.alithemes.com/html/jobbox/demos/assets/imgs/page/homepage1/human.svg" alt="upsc" >
-                  </div>
-                  <div class="img-text  align-self-center">
-                      <h2>Upsc</h2>
-                      <p class="text-muted">3 jobs available</p>
-                  </div>
-              </div>
-  
-            </div>
-            <!--  -->
-            <!-- Slides -->
-            <div class="swiper-slide d-flex flex-column">
-  
-              <div class="d-flex border rounded container-fluid my-5 cards">
-                <div class="row d-flex flex-row p-0">
-                  <div class="col-3 d-flex justify-content-center align-items-center p-0 m-0">
-                    <img src="https://wp.alithemes.com/html/jobbox/demos/assets/imgs/page/homepage1/human.svg" class="img-fluid" alt="upsc" >
-                  </div>
-                  <div class="col-9 p-0 m-0">
-                      <h2 class="text-start">Upsc</h2>
-                      <p class="text-start text-muted">3 jobs available bhoo</p>
-                  </div>
-                </div>
-  
-              </div>
-  
-              <div class="d-flex border rounded container-fluid my-5 cards">
-                  <div class="img-area  align-self-center">
-                      <img src="https://wp.alithemes.com/html/jobbox/demos/assets/imgs/page/homepage1/human.svg" alt="upsc" >
-                  </div>
-                  <div class="img-text  align-self-center">
-                      <h2>Upsc</h2>
-                      <p class="text-muted">3 jobs available</p>
-                  </div>
-              </div>
-  
-            </div>
-            <!--  -->
-            <!-- Slides -->
-            <div class="swiper-slide d-flex flex-column">
-  
-              <div class="d-flex border rounded container-fluid my-5 cards">
-                <div class="row d-flex flex-row p-0">
-                  <div class="col-3 d-flex justify-content-center align-items-center p-0 m-0">
-                    <img src="https://wp.alithemes.com/html/jobbox/demos/assets/imgs/page/homepage1/human.svg" class="img-fluid" alt="upsc" >
-                  </div>
-                  <div class="col-9 p-0 m-0">
-                      <h2 class="text-start">Upsc</h2>
-                      <p class="text-start text-muted">3 jobs available bhoo</p>
-                  </div>
-                </div>
-  
-              </div>
-  
-              <div class="d-flex border rounded container-fluid my-5 cards">
-                  <div class="img-area  align-self-center">
-                      <img src="https://wp.alithemes.com/html/jobbox/demos/assets/imgs/page/homepage1/human.svg" alt="upsc" >
-                  </div>
-                  <div class="img-text  align-self-center">
-                      <h2>Upsc</h2>
-                      <p class="text-muted">3 jobs available</p>
-                  </div>
-              </div>
-  
-            </div>
-            <!--  -->
-            <!-- Slides -->
-            <div class="swiper-slide d-flex flex-column">
-  
-              <div class="d-flex border rounded container-fluid my-5 cards">
-                <div class="row d-flex flex-row p-0">
-                  <div class="col-3 d-flex justify-content-center align-items-center p-0 m-0">
-                    <img src="https://wp.alithemes.com/html/jobbox/demos/assets/imgs/page/homepage1/human.svg" class="img-fluid" alt="upsc" >
-                  </div>
-                  <div class="col-9 p-0 m-0">
-                      <h2 class="text-start">Upsc</h2>
-                      <p class="text-start text-muted">3 jobs available bhoo</p>
-                  </div>
-                </div>
-  
-              </div>
-  
-              <div class="d-flex border rounded container-fluid my-5 cards">
-                  <div class="img-area  align-self-center">
-                      <img src="https://wp.alithemes.com/html/jobbox/demos/assets/imgs/page/homepage1/human.svg" alt="upsc" >
-                  </div>
-                  <div class="img-text  align-self-center">
-                      <h2>Upsc</h2>
-                      <p class="text-muted">3 jobs available</p>
-                  </div>
-              </div>
-  
-            </div>
-            <!--  -->
-            <!-- <div class="swiper-slide">Slide 2</div>
-            <div class="swiper-slide">Slide 3</div>
-            <div class="swiper-slide">Slide 4</div>
-            <div class="swiper-slide">Slide 5</div>
-            <div class="swiper-slide">Slide 6</div>
-            ... -->
-          </div>
-          <!-- If we need pagination -->
-          <div class="swiper-pagination"></div>
-  
-          <!-- If we need navigation buttons -->
-          <div class="swiper-button-prev"></div>
-          <div class="swiper-button-next"></div>
-  
-          <!-- If we need scrollbar -->
-          <!-- <div class="swiper-scrollbar"></div> -->
+          </ul>
         </div>
       </div>
-      <!-- Swiper ends here -->
+      <!-- Tags end here -->
     </div>
     <!-- Category section ends here -->
 
@@ -350,7 +65,7 @@ main/Index page
               
               {% for job in featured_jobs %}
                 <div class="col-md-3 col-sm-5 col-5 mb-3 rounded border bg-light py-3 px-4 m-3 card cards">
-                  <h5>{{job.post_title}}</h5>
+                  <h5 style="font-weight: 700;">{{job.post_title}}</h5>
                   <p>Last date: 
                   {% if job.application_expiry_date %}
                     {{ job.application_expiry_date }}
@@ -358,8 +73,8 @@ main/Index page
                     Not announced
                   {% endif %}
                      </p>
-                  <span>{{ job.total_posts }} seats</span>
-                  <p>Min-qualification: {{ job.minimun_qualification }}</p>
+                  <span style="color: #0d6efd;">{{ job.total_posts }} seats</span>
+                  <!-- <p>Min-qualification: {{ job.minimun_qualification }}</p> -->
                   <a href="{% url 'jobs:jobDetail' job.slug %}" class="stretched-link"></a>
                 </div>
               {% endfor %}
@@ -372,7 +87,9 @@ main/Index page
 
     <div class="container mb-3 p-0">
       <div class="row justify-content-center">
-        <a href="http://" class="text-center">Follow us on telegram <i class="fa fa-telegram"></i></a>
+        <div class="col-auto justify-content-center">
+          <a href="http://" class="text-center d-inline-block" style="text-decoration: none;">Follow us on telegram <i class="fa fa-telegram"></i></a>
+        </div>
       </div>
     </div>
 
@@ -392,6 +109,7 @@ main/Index page
               {% endfor %}
                       
               </ul>
+            <a href="{% url 'jobs:list_by_type' 'admit-card' %}" class="text-center">View more</a>
           </div>
         </div>
         <div class="col-md-4 my-3">
@@ -407,6 +125,7 @@ main/Index page
               {% endfor %}
             
             </ul>
+            <a href="{% url 'jobs:list_by_type' 'result' %}" class="text-center">View more</a>
           </div>
         </div>
         <div class="col-md-4 my-3">
@@ -421,6 +140,7 @@ main/Index page
               {% endfor %}
                                            
             </ul>
+            <a href="{% url 'jobs:jobList' %}" class="text-center">View more</a>
           </div>
         </div>
       <!-- </div>
@@ -439,6 +159,7 @@ main/Index page
               {% endfor %}
                       
             </ul>
+            <a href="{% url 'jobs:list_by_type' 'answerkey' %}" class="text-center">View more</a>
           </div>
         </div>
         <div class="col-md-4 my-3">
@@ -453,6 +174,7 @@ main/Index page
               {% endfor %}
                       
             </ul>
+            <a href="{% url 'jobs:list_by_type' 'syllabus' %}" class="text-center">View more</a>
           </div>
         </div>
         <div class="col-md-4 my-3">
@@ -467,6 +189,7 @@ main/Index page
               {% endfor %}
                       
             </ul>
+            <a href="{% url 'jobs:list_by_type' 'admission' %}" class="text-center">View more</a>
           </div>
         </div>
       </div>

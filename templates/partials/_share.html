@@ -1,14 +1,22 @@
 {% load social_share %}
     
     <!-- Share page -->
-    <div class="container my-3">
+    <!-- <div class="container my-3">
         <div class="row justify-content-center">
           <div class="col-6 d-flex justify-content-center gap-4">
             {% post_to_facebook object_or_url '<i class="fa fa-facebook"></i>' %}
             {% post_to_twitter "SarkariVigyapan: {{object.title}}. Check it out!" object_or_url '<i class="fa fa-twitter"></i>' %}
             {% post_to_telegram "SarkariVigyapan: {{object.title}}" object_or_url '<i class="fa fa-telegram"></i>' %}
-            <!-- {% post_to_whatsapp object_or_url '<i class="fa fa-whatsapp"></i>' %} -->
           </div>
         </div>
-      </div>
+      </div> -->
       <!-- Share page -->
+
+
+      <!-- Fixed share section -->
+      <div class="d-inline-block bg-white start-0 position-fixed top-50 px-2 py-3 fixed_social">
+        {% post_to_facebook object_or_url '<i class="fa fa-facebook"></i>' %}
+        {% post_to_twitter "SarkariVigyapan: {{object.title}}. Check it out!" object_or_url '<i class="fa fa-twitter"></i>' %}
+        {% post_to_telegram "SarkariVigyapan: {{object.title}}" object_or_url '<i class="fa fa-telegram"></i>' %}
+      </div>
+      <!-- Fixed share section ends here -->

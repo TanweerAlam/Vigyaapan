@@ -15,7 +15,34 @@
             {% endif %}
                 
         </div>
-        <div class="row">
+        <!--  -->
+        <div class="row justify-content-center">
+
+            <div class="col-sm-8 my-3">
+              <div class="card bg-white py-3 px-3">
+                <!-- <div class="card-header bg-transparent">
+                  <h4 class="text-center m-0 notification-card-header">Search results</h4>
+                </div> -->
+                <ul class="list-group list-group-flush bg-transparent">
+                  
+                    {% if job_list %}
+                        {% for job in job_list %}
+                            
+                            <a class="list-group-item bg-transparent" href="{{ job.get_absolute_url }}">{{ job.post_title }}</a>
+                            <a class="list-group-item bg-transparent" href="{{ job.get_absolute_url }}">{{ job.post_title }}</a>
+
+
+                        {% endfor %}
+                    {% endif %}
+                  
+                          
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!--  -->
+        <!-- <div class="row">
             <ul>
                 
                 {% if job_list %}
@@ -28,7 +55,7 @@
                 {% endif %}
                     
             </ul>
-        </div>
+        </div> -->
 
 
     </div>

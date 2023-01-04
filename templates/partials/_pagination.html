@@ -1,0 +1,26 @@
+<!-- Pagination -->
+
+<div class="container my-3">
+    <div class="row">
+        <ul class="pagination justify-content-center">
+            
+              <li class="page-item {% if not page_obj.has_previous %} disabled {% endif %}">
+                
+                  <a href="{% if page_obj.has_previous %}?page={{ page_obj.previous_page_number }}{% endif %}" class="page-link mx-1">Previous</a>
+                
+              </li>
+            
+              
+              {% for page in paginator.page_range %}
+                <li class="page-item "><a class="page-link {% if page == page_obj.number %}active{% endif %} mx-1" href="?page={{ page }}">{{page}}</a></li>
+              {% endfor %}
+
+            
+            
+              <li class="page-item {% if not page_obj.has_next %} disabled {% endif %}">
+                <a href="{% if page_obj.has_next %}?page={{ page_obj.next_page_number }}{% endif %}" class="page-link mx-1">Next</a>
+              </li>
+            
+          </ul>
+    </div>
+</div>

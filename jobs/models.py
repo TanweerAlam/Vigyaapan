@@ -8,6 +8,8 @@ from django.conf import settings
 from django.contrib.auth import get_user_model
 from tinymce.models import HTMLField
 
+from taggit.managers import TaggableManager
+
 
 # Create your models here.
 class State(models.Model):
@@ -40,6 +42,7 @@ class Job(models.Model):
     post_title = models.CharField(max_length=200, default='Default name', null=False, blank=False)
     # state = models.CharField(max_length=30, default='Central')
     state = models.ForeignKey(State, on_delete=models.SET_NULL, default=None, null=True, blank=True)
+    tags = TaggableManager()
 
     brief_intro = models.TextField(max_length=500, default='Brief introduction of the job post')
     # body = models.TextField(max_length=500, default='Information of the job post', null=True, blank=True)
