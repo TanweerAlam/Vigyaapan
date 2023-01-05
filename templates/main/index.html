@@ -3,14 +3,32 @@
 {% load social_share %}
 
 
+{% block meta %}
+  <meta name="description" content="SarkariVigyaapan- A government job notifications portal, सरकारी विज्ञापन, Sarkari naukri, Sarkari exams">
+{% endblock meta %}
+
+{% block meta_opengraph %}
+  <!-- for opengraph -->
+  <meta property="og:title" content="SarkariVigyaapan- A government job notifications portal">
+  <meta property="og:url" content={{request.build_absolute_uri}}>
+  <meta property="og:description" content="SarkariVigyaapan- A government job notifications portal">
+  <!--  -->
+{% endblock meta_opengraph %}
+  
+{% block meta_twitter %}
+  <!-- for twitter-card -->
+  <meta name="twitter:title" content="SarkariVigyaapan- A government job notifications portal">
+  <meta name="twitter:description" content="SarkariVigyaapan- A government job notifications portal">
+  <meta name="twitter:url" content="{{request.build_absolute_uri}}">
+  <!-- ..... -->
+{% endblock meta_twitter %}
+  
 {% block extra_sheets %}
   <link rel="stylesheet" href="{% static 'css/custom.css' %}">
 {% endblock extra_sheets %}
   
-
-
 {% block pagetitle %}
-    | {{ site.page }}
+    | Home
 {% endblock pagetitle %}
 
 
@@ -154,7 +172,7 @@
             </div>
             <ul class="list-group list-group-flush bg-transparent">
               
-              {% for job_notification in job_notifications %}
+              {% for job_notification in job_by_answerkey %}
                 <a class="list-group-item bg-transparent" href="{% url 'jobs:jobDetail' job_notification.slug %}">{{ job_notification.post_title }}</a>
               {% endfor %}
                       
@@ -184,7 +202,7 @@
             </div>
             <ul class="list-group list-group-flush bg-transparent">
               
-              {% for job_notification in job_notifications %}
+              {% for job_notification in admissions %}
                 <a class="list-group-item bg-transparent" href="{% url 'jobs:jobDetail' job_notification.slug %}">{{ job_notification.post_title }}</a>
               {% endfor %}
                       
@@ -194,7 +212,6 @@
         </div>
       </div>
     </div>
-
 
 {% endblock content %}
         

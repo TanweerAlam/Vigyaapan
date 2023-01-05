@@ -1,7 +1,29 @@
 <!-- templates/books/search_results.html -->
 {% extends 'base.html' %}
 
-{% block title %}Search{% endblock title %}
+{% block pagetitle %}Search{% endblock pagetitle %}
+
+
+{% block meta %}
+    
+{% endblock meta %}
+    
+
+{% block meta_opengraph %}
+<!-- for opengraph -->
+<meta property="og:title" content="SarkariVigyaapan | Search">
+<meta property="og:url" content={{request.build_absolute_uri}}>
+<meta property="og:description" content="Search the job notifications here...">
+<!--  -->
+{% endblock meta_opengraph %}
+
+{% block meta_twitter %}
+<!-- for twitter-card -->
+<meta name="twitter:title" content="SarkariVigyaapan | Search">
+<meta name="twitter:url" content="{{request.build_absolute_uri}}">
+<meta name="twitter:description" content="Search the job notifications here...">
+<!-- ..... -->
+{% endblock meta_twitter %}
 
 {% block content %}
     {% include 'partials/_search_hero.html' %}

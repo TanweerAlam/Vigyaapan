@@ -12,12 +12,16 @@ from django.db.models import Q
 from .models import Job, State
 from .forms import JobCreationUpdationForm
 
+from datetime import date
+
 # Create your views here.
 
 def jobLists(request, keyword):
     print(keyword)
     job_list = None
     page_number = request.GET.get('page')
+
+    today = date.today()
 
     if keyword == 'admit-card':
         job_list = Job.objects.filter(admit_card_link__isnull=False, is_published=True).order_by('-updated_on').values('post_title', 'slug')
@@ -28,7 +32,7 @@ def jobLists(request, keyword):
     elif keyword == 'answerkey':
         job_list = Job.objects.filter(answerkey_link__isnull=False, is_published=True).order_by('-updated_on').values('post_title', 'slug')
     elif keyword == 'admission':
-        job_list = Job.objects.filter(syllabus_link__isnull=False, is_published=True).order_by('-updated_on').values('post_title', 'slug')
+        job_list = Job.objects.filter(is_admission=True, is_published=True).order_by('-updated_on').values('post_title', 'slug')
 
     paginator = Paginator(job_list, 2) # Show 50 jobs per page.
     page_obj = paginator.get_page(page_number)

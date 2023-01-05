@@ -1,5 +1,31 @@
 {% extends 'base.html' %}
 
+{% block meta %}
+  <meta name="description" content="SarkariVigyaapan- A government job notifications portal, सरकारी विज्ञापन, Sarkari naukri, Sarkari exams">
+{% endblock meta %}
+
+
+{% block meta_opengraph %}
+  <!-- for opengraph -->
+  <meta property="og:title" content="SarkariVigyaapan- A government job notifications portal">
+  <meta property="og:url" content={{request.build_absolute_uri}}>
+  <meta property="og:description" content="SarkariVigyaapan- A government job notifications portal">
+  <!--  -->
+{% endblock meta_opengraph %}
+  
+
+{% block meta_twitter %}
+  <!-- for twitter-card -->
+  <meta name="twitter:title" content="SarkariVigyaapan- A government job notifications portal">
+  <meta name="twitter:description" content="SarkariVigyaapan- A government job notifications portal">
+  <meta name="twitter:url" content="{{request.build_absolute_uri}}">
+  <!-- ..... -->
+{% endblock meta_twitter %}
+
+{% block pagetitle %}
+  | Disclaimer
+{% endblock pagetitle %}
+
 
 {% block content %}
 

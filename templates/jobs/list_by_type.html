@@ -4,6 +4,26 @@
 {% block pagetitle %}
     
 {% endblock pagetitle %}
+
+{% block meta %}
+    
+{% endblock meta %}
+
+{% block meta_opengraph %}
+<!-- for opengraph -->
+<meta property="og:title" content="SarkariVigyaapan | Job postings based on {{keyword}}">
+<meta property="og:url" content={{request.build_absolute_uri}}>
+<meta property="og:description" content="Lists of job notifications based on {{keyword}}">
+<!--  -->
+{% endblock meta_opengraph %}
+
+{% block meta_twitter %}
+<!-- for twitter-card -->
+<meta name="twitter:title" content="SarkariVigyaapan | Job postings based on {{keyword}}">
+<meta name="twitter:url" content="{{request.build_absolute_uri}}">
+<meta name="twitter:description" content="Lists of job notifications based on {{keyword}}">
+<!-- ..... -->
+{% endblock meta_twitter %}
     
 
 {% block content %}

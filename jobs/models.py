@@ -20,8 +20,9 @@ class State(models.Model):
         return self.state
 
 
-def get_default_state():
-    return State.objects.all().first()
+    # def get_default_state():
+    #     return State.objects.all().first()
+
 
 
 class Job(models.Model):
@@ -33,7 +34,6 @@ class Job(models.Model):
         ('POST-GRADUATION', _('Post-graduate/Masters')),
         ('DOCTORATE', _('Ph.D/Doctorate'))
     ]
-
     APPLICATION = [
         ('ONLINE', _('Online')),
         ('OFFLINE', _('Offline'))
@@ -64,16 +64,27 @@ class Job(models.Model):
     dept_of_ministry = models.CharField(max_length=50, null=True, blank=True)
     total_posts = models.PositiveIntegerField()
     application_fee = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0)])
+    # .....
+    fee_last_date = models.DateField(null=True, blank=True)
+    correction_date = models.DateField(null=True, blank=True)
+    exam_date = models.DateField(null=True, blank=True)
+    # .....
+
+    # .....
+    general_obc_fee = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(3000)])
+    sc_st_ph_fee = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(3000)])
+    female_fee = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(3000)])
+    # .....
 
     official_site = models.URLField(null=True, blank=True, default='')
     admit_card_link = models.URLField(null=True, blank=True, default='')
     notification_link = models.URLField(null=True, blank=True, default='')
     result_link = models.URLField(null=True, blank=True, default='')
     syllabus_link = models.URLField(null=True, blank=True, default='')
-    # answerkey_link = models.URLField(null=True, blank=True, default='')
+    answerkey_link = models.URLField(null=True, blank=True, default='')
 
     is_featured = models.BooleanField(default=False, verbose_name="Featured job?")
-
+    is_admission = models.BooleanField(default=False, verbose_name="Is admission?")
     is_published = models.BooleanField(default=False, verbose_name="Published?")
 
     created_on = models.DateField(auto_now_add=True, editable=False)
@@ -105,15 +116,15 @@ class Job(models.Model):
 
 # class Admission(models.Model):
     
-#     admission_name
-# Post date
-# Short information
-# Important dates
-# Application fees 
-# Course name
-# Eligibility
-# Instructions
-# Links
+#     admission_name = models.CharField(max_length=200, default='Default name', null=False, blank=False)
+#     admission_started_on = models.DateField(null=True, blank=True)
+#     brief_intro = models.TextField(max_length=500, default='Brief introduction of the admission to the course')
+#     # important_dates =
+#     application_fees = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(3000)])
+#     course_name = models.CharField(max_length=200, default='Default name', null=False, blank=False)
+#     eligibility = models.CharField(max_length=50, choices=QUALIFICATION)
+#     instructions = HTMLField()
+#     admission_link = models.URLField(null=True, blank=True, default='')
 
 #     def __str__(self):
 #         return self.admission_name

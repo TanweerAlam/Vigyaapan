@@ -6,9 +6,25 @@
       <link rel="stylesheet" href="{% static 'css/custom.css' %}">
     {% endblock extra_sheets %}
         
-    
-    {% block head %}
-    {% endblock head %}
+    {% block meta %}
+      <!-- <meta name="description" content="{{description}}"> -->
+    {% endblock meta %}
+
+    {% block meta_opengraph %}
+      <!-- for opengraph -->
+      <meta property="og:title" content="{{ object.post_title }}">
+      <meta property="og:url" content={{request.build_absolute_uri}}>
+      <meta property="og:description" content="{{object.brief_intro|slice:':88'}}">
+      <!--  -->
+    {% endblock meta_opengraph %}
+      
+    {% block meta_twitter %}
+      <!-- for twitter-card -->
+      <meta name="twitter:title" content="{{ object.post_title }}">
+      <meta name="twitter:url" content="{{request.build_absolute_uri}}">
+      <meta name="twitter:description" content="{{object.brief_intro|slice:':88'}}">
+      <!-- ..... -->
+    {% endblock meta_twitter %}
 
     
     {% block pagetitle %}

@@ -5,17 +5,27 @@
 {% block pagetitle %}
     | Job List
 {% endblock pagetitle %}
-    
 
-  <!-- <div>
-    {% for job in job_list %}
-        <a href="{% url 'jobs:jobDetail' job.slug %}"><p>{{ job.post_title }}</p></a>
-        
-    {% endfor %}
-  </div>   -->
-    
+{% block meta %}
+    <meta name="description" content="SarkariVigyaapan- A government job notifications portal, सरकारी विज्ञापन, Sarkari naukri, Sarkari exams, ">
+{% endblock meta %}
 
+{% block meta_opengraph %}
+<!-- for opengraph -->
+<meta property="og:title" content="SarkariVigyaapan | Job postings">
+<meta property="og:url" content={{request.build_absolute_uri}}>
+<meta property="og:description" content="Lists of job notifications">
 <!--  -->
+{% endblock meta_opengraph %}
+
+{% block meta_twitter %}
+<!-- for twitter-card -->
+<meta name="twitter:title" content="SarkariVigyaapan | Job postings">
+<meta name="twitter:url" content="{{request.build_absolute_uri}}">
+<meta name="twitter:description" content="Lists of job notifications">
+<!-- ..... -->
+{% endblock meta_twitter %}
+    
 
 <!-- templates/books/search_results.html -->
 
