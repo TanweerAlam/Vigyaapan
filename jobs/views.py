@@ -14,6 +14,8 @@ from .forms import JobCreationUpdationForm
 
 from datetime import date
 
+from taggit.models import Tag
+
 # Create your views here.
 
 def jobLists(request, keyword):
@@ -64,6 +66,20 @@ class JobDetailView(DetailView):
     model = Job
     template_name = "jobs/job_detail.html"
     # pk_url_kwarg = 'pk'
+
+class TagListView(ListView):
+    template_name = 'jobs/tag_list.html'
+    model = Tag
+
+class JobListByTagView(ListView):
+    model = Job
+    template_name = "jobs/tag_detail_list.html"
+    context_object_name = 'object_list'
+    paginate_by = 100
+
+    def get_queryset(self):
+        return Job.objects.filter(tags__slug=self.kwargs.get('slug'))
+
 
 # class JobCreateView(LoginRequiredMixin, CreateView):
 #     model = Job

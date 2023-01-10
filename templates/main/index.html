@@ -11,14 +11,15 @@
   <!-- for opengraph -->
   <meta property="og:title" content="SarkariVigyaapan- A government job notifications portal">
   <meta property="og:url" content={{request.build_absolute_uri}}>
-  <meta property="og:description" content="SarkariVigyaapan- A government job notifications portal">
+  <meta property="og:description" content="Get all the government job notification and latest update on government vacancies. Sarkari Vigyaapan is committed to bring you every important job updates under single page. So what are you waiting for !!! Start yours at: www.sarkarivigyaapan.com">
+  <meta name="keywords" content="">
   <!--  -->
 {% endblock meta_opengraph %}
   
 {% block meta_twitter %}
   <!-- for twitter-card -->
   <meta name="twitter:title" content="SarkariVigyaapan- A government job notifications portal">
-  <meta name="twitter:description" content="SarkariVigyaapan- A government job notifications portal">
+  <meta name="twitter:description" content="Get all the government job notification and latest update on government vacancies. Sarkari Vigyaapan is committed to bring you every important job updates under single page. So what are you waiting for !!! Start yours at: www.sarkarivigyaapan.com">
   <meta name="twitter:url" content="{{request.build_absolute_uri}}">
   <!-- ..... -->
 {% endblock meta_twitter %}
@@ -83,7 +84,7 @@
               
               {% for job in featured_jobs %}
                 <div class="col-md-3 col-sm-5 col-5 mb-3 rounded border bg-light py-3 px-4 m-3 card cards">
-                  <h5 style="font-weight: 700;">{{job.post_title}}</h5>
+                  <h5 style="font-weight: 700;">{{job.post_title|title}}</h5>
                   <p>Last date: 
                   {% if job.application_expiry_date %}
                     {{ job.application_expiry_date }}
@@ -139,7 +140,7 @@
 
                             
               {% for job_notification in job_by_results %}
-                <a class="list-group-item bg-transparent" href="{% url 'jobs:jobDetail' job_notification.slug %}">{{ job_notification.post_title }}</a>
+                <a class="list-group-item bg-transparent" href="{% url 'jobs:jobDetail' job_notification.slug %}">{{ job_notification.post_title|title }}</a>
               {% endfor %}
             
             </ul>
@@ -154,7 +155,7 @@
             <ul class="list-group list-group-flush bg-transparent">
               
               {% for job_notification in job_notifications %}
-                <a class="list-group-item bg-transparent" href="{% url 'jobs:jobDetail' job_notification.slug %}">{{ job_notification.post_title }}</a>
+                <a class="list-group-item bg-transparent" href="{% url 'jobs:jobDetail' job_notification.slug %}">{{ job_notification.post_title|title }}</a>
               {% endfor %}
                                            
             </ul>
@@ -173,7 +174,7 @@
             <ul class="list-group list-group-flush bg-transparent">
               
               {% for job_notification in job_by_answerkey %}
-                <a class="list-group-item bg-transparent" href="{% url 'jobs:jobDetail' job_notification.slug %}">{{ job_notification.post_title }}</a>
+                <a class="list-group-item bg-transparent" href="{% url 'jobs:jobDetail' job_notification.slug %}">{{ job_notification.post_title|title }}</a>
               {% endfor %}
                       
             </ul>
@@ -188,7 +189,7 @@
             <ul class="list-group list-group-flush bg-transparent">
               
               {% for job_notification in job_syllabus %}
-                <a class="list-group-item bg-transparent" href="{% url 'jobs:jobDetail' job_notification.slug %}">{{ job_notification.post_title }}</a>
+                <a class="list-group-item bg-transparent" href="{% url 'jobs:jobDetail' job_notification.slug %}">{{ job_notification.post_title|title }}</a>
               {% endfor %}
                       
             </ul>
@@ -203,7 +204,7 @@
             <ul class="list-group list-group-flush bg-transparent">
               
               {% for job_notification in admissions %}
-                <a class="list-group-item bg-transparent" href="{% url 'jobs:jobDetail' job_notification.slug %}">{{ job_notification.post_title }}</a>
+                <a class="list-group-item bg-transparent" href="{% url 'jobs:jobDetail' job_notification.slug %}">{{ job_notification.post_title|title }}</a>
               {% endfor %}
                       
             </ul>
@@ -214,4 +215,3 @@
     </div>
 
 {% endblock content %}
-        

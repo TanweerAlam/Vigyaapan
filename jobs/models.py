@@ -8,7 +8,8 @@ from django.conf import settings
 from django.contrib.auth import get_user_model
 from tinymce.models import HTMLField
 
-from taggit.managers import TaggableManager
+# from taggit.managers import TaggableManager
+from taggit_autosuggest.managers import TaggableManager
 
 
 # Create your models here.

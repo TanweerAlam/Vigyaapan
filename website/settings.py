@@ -33,7 +33,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1']
 
-
+SITE_ID = 1
 # Application definition
 
 INSTALLED_APPS = [
@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # sitemap
-    # 'django.contrib.sites',
+    'django.contrib.sites',
     'django.contrib.sitemaps',
 
     # Local app
@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     "crispy_bootstrap5",
     "django_social_share",
     "taggit",
+    "taggit_autosuggest",
 ]
 
 MIDDLEWARE = [
