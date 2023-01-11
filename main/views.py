@@ -81,9 +81,9 @@ def contactView(request):
 
             try:
                 send_mail(subject, email_body, 'tanweeralam1312@gmail.com', ('tannumystic@gmail.com',))
-                messages.success(request, "Your email was sent to the admins.")
+                messages.success(request, "Your email has been sent...")
             except BadHeaderError:
-                messages.error('Invalid header')
+                messages.error('Invalid header...')
             
             return redirect('main:contact')
     

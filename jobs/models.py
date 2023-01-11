@@ -40,6 +40,8 @@ class Job(models.Model):
         ('OFFLINE', _('Offline'))
     ]
 
+    keywords = models.CharField(max_length=200, default='Default name', null=False, blank=False)
+
     post_title = models.CharField(max_length=200, default='Default name', null=False, blank=False)
     # state = models.CharField(max_length=30, default='Central')
     state = models.ForeignKey(State, on_delete=models.SET_NULL, default=None, null=True, blank=True)
@@ -114,18 +116,3 @@ class Job(models.Model):
     def get_absolute_url(self):
         return reverse('jobs:jobDetail', kwargs={"slug": self.slug})
 
-
-# class Admission(models.Model):
-    
-#     admission_name = models.CharField(max_length=200, default='Default name', null=False, blank=False)
-#     admission_started_on = models.DateField(null=True, blank=True)
-#     brief_intro = models.TextField(max_length=500, default='Brief introduction of the admission to the course')
-#     # important_dates =
-#     application_fees = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(3000)])
-#     course_name = models.CharField(max_length=200, default='Default name', null=False, blank=False)
-#     eligibility = models.CharField(max_length=50, choices=QUALIFICATION)
-#     instructions = HTMLField()
-#     admission_link = models.URLField(null=True, blank=True, default='')
-
-#     def __str__(self):
-#         return self.admission_name

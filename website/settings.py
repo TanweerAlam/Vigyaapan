@@ -178,7 +178,8 @@ AUTH_USER_MODEL = "users.CustomUser"
 # EMAIL_USE_TLS = True
 
 # Using sendgrid for Newsletters app
-FROM_EMAIL = "tannumystic@gmail.com"
+# FROM_EMAIL = "tannumystic@gmail.com"
+FROM_EMAIL = "tanweeralam1312@gmail.com"
 SENDGRID_API_KEY = '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'
 
 # EMAIL_HOST = 'smtp.sendgrid.net'
@@ -214,3 +215,12 @@ SENDGRID_ECHO_TO_STDOUT=True
 
 # Django-Taggit
 TAGGIT_CASE_INSENSITIVE = True
+
+from django.contrib.messages import constants as messages
+MESSAGE_TAGS = {
+        messages.DEBUG: 'alert-secondary',
+        messages.INFO: 'alert-info',
+        messages.SUCCESS: 'alert-success',
+        messages.WARNING: 'alert-warning',
+        messages.ERROR: 'alert-danger',
+}

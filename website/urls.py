@@ -43,11 +43,11 @@ urlpatterns = [
     path('', include('main.urls', namespace="main")),
     path('', include('jobs.urls', namespace="jobs")),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.index'),
-    path('sitemap-(?P<section>.+)\.xml', 
-        sitemaps_views.sitemap, 
-        {'sitemaps': sitemaps},
-        name='django.contrib.sitemaps.views.sitemap'
-    ),
+    # path('sitemap-(?P<section>.+)\.xml', 
+    #     sitemaps_views.sitemap, 
+    #     {'sitemaps': sitemaps},
+    #     name='django.contrib.sitemaps.views.sitemap'
+    # ),
     path('taggit_autosuggest', include('taggit_autosuggest.urls')),
 ] 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -7,7 +7,8 @@
     {% endblock extra_sheets %}
         
     {% block meta %}
-      <!-- <meta name="description" content="{{description}}"> -->
+      <meta name="description" content="{{object.brief_intro}}">
+      <meta name="keywords" content="{{object.keywords}}">
     {% endblock meta %}
 
     {% block meta_opengraph %}
@@ -75,43 +76,7 @@
         </div>
       </div>
     </div>
-    <!-- <div class="first-card">
-        <hr>
-        <h1>{{ object.post_title }} {{ object.application_mode }} 
-            {% if object.total_posts %}
-              for {{ object.total_posts }} posts
-            {% endif %}
-        </h1>
-        <hr>
-        <br>
-        
-        {% if object.notification_date %}
-          <h2>{{ object.notification_date }}</h2>
-        {% endif %}
-          
-        <br>
-        <p>
-          {{ object.brief_intro}}
-        </p>
-        <ul>
-          <li>Minimum qualification: {{object.minimum_qualification}} </li>
-        </ul>
 
-        <div class="container">
-          <div class="row">
-            <ul class="nav nav-pills container justify-content-center">
-             
-              {% for category in object.tags.all %}
-                <li class="nav-item mx-1 my-1 category-pill bg-light">
-                  <a class="nav-link" aria-current="page" href="">{{category.name}}</a>
-                </li>
-              {% endfor %}
-  
-            </ul>
-          </div>
-        </div>
-      </div> -->
-  
       <div class="container my-5">
         <div class="row justify-content-center">
           <div class="col-10 col-sm-8 detail-card p-4 justify-content-center ">
@@ -130,21 +95,7 @@
           </div>
         </div>
       </div>
-      <!-- <div class="second-card">
-        <hr>
-        <h1>{{object.post_title}} vacancy details</h1>
-        <hr>
-        <br>
-        
-        {% if object.notification_link %}
-          {{object.content|safe}}
-        {% else %}
-          <h2>Will be updated soon...</a></h2>
-        {% endif %}
-          
-        <br>
-      </div> -->
-      <!--  -->
+
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-10 col-sm-4 detail-card p-4 mb-5 mx-1 justify-content-center ">
@@ -167,9 +118,25 @@
                 To be announced
               {% endif %}
               </li>
-              <li>Pay Exam Fee Last Date : 30/12/2022</li>
-              <li>Correction Last Date : 30/12/2022</li>
-              <li>Exam Date : As per Schedule</li>
+              <li>Pay Exam Fee Last Date : 
+                {% if object.fee_last_date %}
+                  {{object.fee_last_date}}
+                {% else %}
+                  Unannounced
+                {% endif %}
+              </li>
+
+              {% if object.correction_date %}
+              <li>Correction Last Date : {{object.correction_date}}</li>
+              {% endif %}
+
+              <li>Exam Date :
+                {% if object.exam_date %}
+                  {{object.exam_date}}
+                {% else %}
+                  Unannounced
+                {% endif %}
+              </li>
             </ul>
           </div>
           <div class="col-10 col-sm-4 detail-card p-4 mb-5 mx-1 justify-content-center ">
@@ -178,9 +145,27 @@
             <hr>
             <br>
             <ul>
-              <li>General / OBC/ Other State : 600/-</li>
-              <li>SC / ST / PH : 150/-</li>
-              <li>Female Candidate (Bihar Dom.) : 150/-</li>
+              <li>General / OBC/ Other State : 
+                {% if object.general_obc_fee %}
+                  {{object.general_obc_fee}}
+                {% else %}
+                  Unannounced
+                {% endif %}
+                /-</li>
+              <li>SC / ST / PH : 
+                {% if object.sc_st_ph_fee %}
+                  {{object.sc_st_ph_fee}}
+                {% else %}
+                  Unannounced
+                {% endif %}
+                /-</li>
+              <li>Female Candidate :
+                {% if object.female_fee %}
+                  {{object.female_fee}}
+                {% else %}
+                  Unannounced
+                {% endif %}
+                /-</li>
               <li>Pay the Exam Fee Through Online / Offline Fee Mode Only</li>
             </ul>
           </div>
@@ -198,7 +183,7 @@
               <li>Minimum Age : {{ object.minimum_age }} Years (Post Wise)</li>
               <li>Maximum Age : {{ object.maximum_age }} Years</li>
               <!-- <li>Maximum Age : 40 Female</li> -->
-              <li>Age Relaxation Extra as per BPSC 68 Pre Rules.</li>
+              <li>Age Relaxation as per state or central rules </li>
             </ul>
           </div>
         </div>
@@ -242,96 +227,6 @@
         </div>
       </div>
       <!--  -->
-
-      <!-- <div class="small-card">
-        <div class="third-card">
-          <br>
-          <hr>
-          <h1>Important Dates</h1>
-          <hr>
-          <br>
-          <ul>
-            <li>Application Begin : 
-            {% if object.online_application_date %}
-              {{object.online_application_date}}
-            {% else %}
-              To be announced
-            {% endif %}
-              </li>
-            <li>Last Date for Apply Online : 
-            {% if object.application_expiry_date %}
-              {{object.application_expiry_date}}
-            {% else %}
-              To be announced
-            {% endif %}
-            </li>
-            <li>Pay Exam Fee Last Date : 30/12/2022</li>
-            <li>Correction Last Date : 30/12/2022</li>
-            <li>Exam Date : As per Schedule</li>
-          </ul>
-        </div>
-        <div class="fourth-card">
-          <br>
-          <hr>
-          <h1>Application Fee</h1>
-          <hr>
-          <br>
-          <ul>
-            <li>General / OBC/ Other State : 600/-</li>
-            <li>SC / ST / PH : 150/-</li>
-            <li>Female Candidate (Bihar Dom.) : 150/-</li>
-            <li>Pay the Exam Fee Through Online / Offline Fee Mode Only</li>
-          </ul>
-        </div>
-      </div> -->
-      <!-- <div class="fifth-card">
-        <br>
-        <hr>
-        <h1>Age Limit</h1>
-        <hr>
-        <br>
-        <ul>
-          <li>Minimum Age : {{ object.minimum_age }} Years (Post Wise)</li>
-          <li>Maximum Age : {{ object.maximum_age }} Years</li>
-          <li>Age Relaxation Extra as per BPSC 68 Pre Rules.</li>
-        </ul>
-      </div> -->
-      <!-- <div class="sixth-card">
-        <br>
-        <hr>
-        <h1>Some Useful Important Links</h1>
-        <hr>
-        <br>
-        <div class="grid-container">
-          
-          {% if object.application_link %}
-            <a href="" class="text-decoration-none"><div class="grid-item">Apply online</div></a>
-          {% else %}
-            <div class="grid-item">Application link will be updated soon...</div>
-          {% endif %}
-
-          {% if object.application_link %}
-            <a href="" class="text-decoration-none"><div class="grid-item">Download notification</div></a>
-          {% else %}
-            <div class="grid-item">Notification link will be updated soon...</div>
-          {% endif %}
-
-          {% if object.application_link %}
-            <a href="" class="text-decoration-none"><div class="grid-item">Download result</div></a>
-          {% else %}
-            <div class="grid-item">Result link will be updated soon...</div>
-          {% endif %}
-
-          {% if object.application_link %}
-            <a href="" class="text-decoration-none"><div class="grid-item">Official website</div></a>
-          {% else %}
-            <div class="grid-item">Official website link will be updated soon...</div>
-          {% endif %}
-
-          <a href="" class="text-decoration-none"><div class="grid-item">Join us on Telegram</div></a>
-            
-        </div>
-      </div> -->
 
       <!-- Share page -->
       {% include 'partials/_share.html' %}
