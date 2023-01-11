@@ -5,7 +5,7 @@ from django.urls import reverse
 class JobSitemap(Sitemap):
     changefreq = "daily"
     priority = 0.9
-    limit = 3
+    limit = 5000
 
     def items(self):
         return Job.objects.filter(is_published=True)
