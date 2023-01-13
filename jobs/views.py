@@ -80,6 +80,8 @@ class JobListByTagView(ListView):
     def get_queryset(self):
         return Job.objects.filter(tags__slug=self.kwargs.get('slug'))
 
+def archiveList(request):
+    return render(request, 'jobs/archive_page.html')
 
 # class JobCreateView(LoginRequiredMixin, CreateView):
 #     model = Job

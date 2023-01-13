@@ -38,7 +38,7 @@ sitemaps = {
 
 urlpatterns = [
     path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
-    path('not_for_you/secret_gate/panel_control', admin.site.urls),
+    path('not_for_you/secret_gate/panel_control/', admin.site.urls),
     # path('accounts/', include("django.contrib.auth.urls")),
     # path('accounts/', include('users.urls', namespace="users.urls")), # users url is imported as accounts path
     # path('tinymce/', include('tinymce.urls')),

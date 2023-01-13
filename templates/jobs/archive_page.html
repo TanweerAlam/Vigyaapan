@@ -6,7 +6,7 @@
         <!-- Category section -->
           <div class="container text-center my-5 p-5">
             <div class="row">
-              <h1 class="sectional-heading" style="padding: 10px;">Tags</h1>
+              <h1 class="sectional-heading" style="padding: 10px;">Archive</h1>
             </div>
       
             <!-- Tags -->
@@ -14,11 +14,10 @@
               <div class="row justify-content-center">
                 <ul class="nav nav-pills container justify-content-center">
                  
-                  {% for tag in tag_list %}
-                    <li class="nav-item mx-1 my-1 category-pill bg-light">
-                      <a class="nav-link" aria-current="page" href="{% url 'jobs:job_list_by_tags' tag.slug%}">{{tag.name}}</a>
-                    </li>
-                  {% endfor %}
+                  <h2>No archives are found yet...</h2>
+                    <!-- <li class="nav-item mx-1 my-1 category-pill bg-light">
+                      <a class="nav-link" aria-current="page" href="">{{archive.name}}</a>
+                    </li> -->
       
                 </ul>
               </div>

@@ -24,7 +24,6 @@ class IndexView(TemplateView):
     
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
-        context['site'] = Main.objects.get(page__icontains="home")
         context['job_notifications'] = Job.objects.filter(is_published=True).order_by('-created_on').values('post_title', 'slug')[:10]
         context['job_by_results'] = Job.objects.filter( result_link__isnull=False, is_published=True).order_by('-updated_on').values('post_title', 'slug')[:10]
         context['featured_jobs'] = Job.objects.filter(is_featured=True, is_published=True).order_by('-updated_on').values('post_title', 'slug')[:10]
@@ -39,7 +38,6 @@ class IndexView(TemplateView):
 
 class AboutView(TemplateView):
     template_name = "main/about.html"
-    extra_context = {'site' : Main.objects.get(page__icontains="about")}
     
 # class ContactView(FormView):
 #     template_name = "main/contact.html"
@@ -68,7 +66,6 @@ class AboutView(TemplateView):
 
 @csrf_exempt
 def contactView(request):
-    site = Main.objects.get(page__icontains="contact")
     form = None
     if request.method == 'POST':
         form = ContactForm(request.POST)
@@ -80,7 +77,7 @@ def contactView(request):
             email_body = f'Hi Admin/Team \n\n {message} \n\n {your_name}'
 
             try:
-                send_mail(subject, email_body, 'tanweeralam1312@gmail.com', ('tannumystic@gmail.com',))
+                send_mail(subject, email_body, email, (settings.FROM_EMAIL,))
                 messages.success(request, "Your email has been sent...")
             except BadHeaderError:
                 messages.error('Invalid header...')
@@ -88,7 +85,7 @@ def contactView(request):
             return redirect('main:contact')
     
     form = ContactForm()
-    return render(request, 'main/contact.html', {'site': site, 'form': form})
+    return render(request, 'main/contact.html', {'form': form})
 
 
 class PrivacyPolicyView(TemplateView):

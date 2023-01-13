@@ -44,7 +44,7 @@ def new(request):
                 #     confirm your registration</a>.'.format(request.build_absolute_uri('/confirm/'),
                 #                                         sub.email,
                 #                                         sub.conf_num)
-                current_site = Site.objects.get_current()
+                # current_site = Site.objects.get_current()
                 
                 message = Mail(
                     from_email=settings.FROM_EMAIL,

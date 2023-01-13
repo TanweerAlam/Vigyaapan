@@ -56,8 +56,8 @@ INSTALLED_APPS = [
 
     # Third-party batteries
     'tinymce',
-    'crispy_forms',
-    "crispy_bootstrap5",
+    # 'crispy_forms',
+    # "crispy_bootstrap5",
     "django_social_share",
     "taggit",
     "taggit_autosuggest",
@@ -99,42 +99,42 @@ WSGI_APPLICATION = 'website.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 
-if DEBUG:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-        }
+# if DEBUG:
+#     DATABASES = {
+#         'default': {
+#             'ENGINE': 'django.db.backends.sqlite3',
+#             'NAME': BASE_DIR / 'db.sqlite3',
+#         }
+#     }
+# else:
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': env('DATABASE_NAME'),
+        'USER': env('DATABASE_USER'),
+        'PASSWORD': env('DATABASE_PASSWORD'),
+        'HOST': '',
+        'PORT': env('DATABASE_PORT'),
     }
-else:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'mydatabase',
-            'USER': 'mydatabaseuser',
-            'PASSWORD': 'mypassword',
-            'HOST': '127.0.0.1',
-            'PORT': '5432',
-        }
-    }
+}
 
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    # {
-    #     'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    # },
-    # {
-    #     'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    # },
-    # {
-    #     'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    # },
-    # {
-    #     'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    # },
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
 ]
 
 
@@ -170,12 +170,12 @@ MEDIA_URL = 'uploaded_newsletters/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # CRISPY_TEMPLATE_PACK = 'uni_form'
-CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
-CRISPY_TEMPLATE_PACK = "bootstrap5"
+# CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+# CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 # Login & logout redirection
-LOGIN_REDIRECT_URL = "users:dashboard"
-LOGOUT_REDIRECT_URL = "main:index"
+# LOGIN_REDIRECT_URL = "users:dashboard"
+# LOGOUT_REDIRECT_URL = "main:index"
 
 # 
 AUTH_USER_MODEL = "users.CustomUser"
@@ -193,8 +193,15 @@ AUTH_USER_MODEL = "users.CustomUser"
 
 # Using sendgrid for Newsletters app
 # FROM_EMAIL = "tannumystic@gmail.com"
-FROM_EMAIL = "tanweeralam1312@gmail.com"
-SENDGRID_API_KEY = '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'
+FROM_EMAIL = env('FROM_EMAIL')
+SENDGRID_API_KEY = env('SMTP_PASSWORD')
+
+# Django-sendgrid-v5 settings
+EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
+# Toggle sandbox mode (when running in DEBUG mode)
+SENDGRID_SANDBOX_MODE_IN_DEBUG=False
+# echo to stdout or any other file-like object that is passed to the backend via the stream kwarg.
+SENDGRID_ECHO_TO_STDOUT=True
 
 # EMAIL_HOST = 'smtp.sendgrid.net'
 # EMAIL_HOST_USER = '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' # this is exactly the value 'apikey'
@@ -220,12 +227,7 @@ TINYMCE_DEFAULT_CONFIG = {
 }
 # TINYMCE_COMPRESSOR = True
 
-# Django-sendgrid-v5 settings
-EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
-# Toggle sandbox mode (when running in DEBUG mode)
-SENDGRID_SANDBOX_MODE_IN_DEBUG=False
-# echo to stdout or any other file-like object that is passed to the backend via the stream kwarg.
-SENDGRID_ECHO_TO_STDOUT=True
+
 
 # Django-Taggit
 TAGGIT_CASE_INSENSITIVE = True
