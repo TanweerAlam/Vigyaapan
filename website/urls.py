@@ -37,20 +37,15 @@ sitemaps = {
 }
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('accounts/', include("django.contrib.auth.urls")),
-    path('accounts/', include('users.urls', namespace="users.urls")), # users url is imported as accounts path
+    path('admin/', include('admin_honeypot.urls', namespace='admin_honeypot')),
+    path('not_for_you/secret_gate/panel_control', admin.site.urls),
+    # path('accounts/', include("django.contrib.auth.urls")),
+    # path('accounts/', include('users.urls', namespace="users.urls")), # users url is imported as accounts path
     # path('tinymce/', include('tinymce.urls')),
     # path('users/', include('users.urls', namespace="users")),
     path('newsletters/', include('newsletters.urls', namespace="newsletters")),
     path('', include('main.urls', namespace="main")),
     path('', include('jobs.urls', namespace="jobs")),
-    # path('sitemap.xml', sitemap, {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.index'),
-    # path('sitemap-(?P<section>.+)\.xml', 
-    #     sitemaps_views.sitemap, 
-    #     {'sitemaps': sitemaps},
-    #     name='django.contrib.sitemaps.views.sitemap'
-    # ),
     path('sitemap.xml', cache_page(86400)(index), {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.index'),
     path('sitemap-<section>.xml', cache_page(86400)(sitemap), {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
 

@@ -1,11 +1,13 @@
 import pytz
 from apscheduler.schedulers.background import BackgroundScheduler
-from .tasks import ping_all_search_engines
+from .tasks import pinging_google
 
 def start():
     scheduler = BackgroundScheduler({
         'apscheduler.timezone': pytz.timezone('Asia/Kolkata')
     })
-    scheduler.add_job(ping_all_search_engines('/sitemap.xml'), 'cron', hour='*/23')
-    scheduler.print_jobs()
+
+    scheduler.add_job(pinging_google, 'cron', hour='23')
+    # scheduler.add_job(pinging_google, 'cron', day_of_week='0-6', hour='23')
+    scheduler.print_jobs() 
     scheduler.start()

@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     "django_social_share",
     "taggit",
     "taggit_autosuggest",
+    "admin_honeypot",
 ]
 
 MIDDLEWARE = [
@@ -97,12 +98,25 @@ WSGI_APPLICATION = 'website.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'mydatabase',
+            'USER': 'mydatabaseuser',
+            'PASSWORD': 'mypassword',
+            'HOST': '127.0.0.1',
+            'PORT': '5432',
+        }
+    }
 
 
 # Password validation
@@ -224,3 +238,59 @@ MESSAGE_TAGS = {
         messages.WARNING: 'alert-warning',
         messages.ERROR: 'alert-danger',
 }
+
+# 
+# 
+# Logging system
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'formatters': {
+#         'verbose': {
+#             'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+#             'style': '{',
+#         },
+#         'simple': {
+#             'format': '{levelname} {message}',
+#             'style': '{',
+#         },
+#     },
+#     'filters': {
+#         'special': {
+#             '()': 'project.logging.SpecialFilter',
+#             'foo': 'bar',
+#         },
+#         'require_debug_true': {
+#             '()': 'django.utils.log.RequireDebugTrue',
+#         },
+#     },
+#     'handlers': {
+#         'console': {
+#             'level': 'INFO',
+#             'filters': ['require_debug_true'],
+#             'class': 'logging.StreamHandler',
+#             'formatter': 'simple'
+#         },
+#         'mail_admins': {
+#             'level': 'ERROR',
+#             'class': 'django.utils.log.AdminEmailHandler',
+#             'filters': ['special']
+#         }
+#     },
+#     'loggers': {
+#         'django': {
+#             'handlers': ['console'],
+#             'propagate': True,
+#         },
+#         'django.request': {
+#             'handlers': ['mail_admins'],
+#             'level': 'ERROR',
+#             'propagate': False,
+#         },
+#         'myproject.custom': {
+#             'handlers': ['console', 'mail_admins'],
+#             'level': 'INFO',
+#             'filters': ['special']
+#         }
+#     }
+# }
