@@ -21,24 +21,24 @@ class IndexView(TemplateView):
     template_name = "main/index.html"
     # extra_context = {'jobs': Job.objects.filter(is_published=True).values('post_title')}
     # extra_context = {'site' : Main.objects.get(page__icontains="home")}
-    
+
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
         context['job_notifications'] = Job.objects.filter(is_published=True).order_by('-created_on').values('post_title', 'slug')[:10]
         context['job_by_results'] = Job.objects.filter( result_link__isnull=False, is_published=True).order_by('-updated_on').values('post_title', 'slug')[:10]
-        context['featured_jobs'] = Job.objects.filter(is_featured=True, is_published=True).order_by('-updated_on').values('post_title', 'slug')[:10]
+        context['featured_jobs'] = Job.objects.filter(is_featured=True, is_published=True).order_by('-updated_on').values('post_title', 'slug', 'total_posts', 'application_expiry_date')[:6]
         context['job_by_admitcards'] = Job.objects.filter(admit_card_link__isnull=False, is_published=True).order_by('-updated_on').values('post_title', 'slug')[:10]
         context['job_by_answerkey'] = Job.objects.filter(answerkey_link__isnull=False, is_published=True).order_by('-updated_on').values('post_title', 'slug')[:10]
         context['job_syllabus'] = Job.objects.filter(syllabus_link__isnull=False, is_published=True).order_by('-updated_on').values('post_title', 'slug')[:10]
         context['admissions'] = Job.objects.filter( is_admission=True, is_published=True).order_by('-updated_on').values('post_title', 'slug')[:10]
-        context['categories'] = Tag.objects.all()[:50]
+        context['categories'] = Tag.objects.all().distinct()[:50]
 
         return context
-    
+
 
 class AboutView(TemplateView):
     template_name = "main/about.html"
-    
+
 # class ContactView(FormView):
 #     template_name = "main/contact.html"
 #     form_class = ContactForm
@@ -81,9 +81,9 @@ def contactView(request):
                 messages.success(request, "Your email has been sent...")
             except BadHeaderError:
                 messages.error('Invalid header...')
-            
+
             return redirect('main:contact')
-    
+
     form = ContactForm()
     return render(request, 'main/contact.html', {'form': form})
 

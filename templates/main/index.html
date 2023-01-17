@@ -15,7 +15,7 @@
   <meta name="keywords" content="">
   <!--  -->
 {% endblock meta_opengraph %}
-  
+
 {% block meta_twitter %}
   <!-- for twitter-card -->
   <meta name="twitter:title" content="SarkariVigyaapan- A government job notifications portal">
@@ -23,11 +23,11 @@
   <meta name="twitter:url" content="{{request.build_absolute_uri}}">
   <!-- ..... -->
 {% endblock meta_twitter %}
-  
+
 {% block extra_sheets %}
   <link rel="stylesheet" href="{% static 'css/custom.css' %}">
 {% endblock extra_sheets %}
-  
+
 {% block pagetitle %}
     | Home
 {% endblock pagetitle %}
@@ -57,9 +57,9 @@
       <div class="container">
         <div class="row justify-content-center">
           <ul class="nav nav-pills container justify-content-center">
-           
+
             {% for category in categories %}
-              <li class="nav-item mx-1 my-1 category-pill bg-light">
+              <li class="nav-item mx-1 my-1 category-pill bg-light fw-semibold">
                 <a class="nav-link" aria-current="page" href="{% url 'jobs:job_list_by_tags' category.slug %}">{{category.name}}</a>
               </li>
             {% endfor %}
@@ -75,31 +75,31 @@
     <div class="container pt-3 pb-3 mt-5">
         <div class="row text-center mb-3">
             <h2 class="sectional-heading">Latest jobs</h2>
-            <p>Find the job that's perfect for you. about 800+ new jobs everyday
+            <p>Find the job that's perfect for you. latest new jobs everyday
             </p>
         </div>
         <div class="row justify-content-center">
-            
+
             {% if featured_jobs %}
-              
+
               {% for job in featured_jobs %}
-                <div class="col-md-3 col-sm-5 col-5 mb-3 rounded border bg-light py-3 px-4 m-3 card cards">
+                <div class="col-lg-3 col-sm-5 col-11 mb-3 rounded border bg-light py-3 px-4 m-3 card cards">
                   <h4 style="font-weight: 700;">{{job.post_title|title}}</h4>
-                  <p>Last date: 
+                  <p>Last date:
                   {% if job.application_expiry_date %}
-                    {{ job.application_expiry_date }}
+                    {{ job.application_expiry_date|date:"M d, Y" }}
                   {% else %}
                     Not announced
                   {% endif %}
                      </p>
-                  <span style="color: #0d6efd;">{{ job.total_posts }} seats</span>
+                  <strong><span style="color: #0d6efd;">{{ job.total_posts }} seats</span></strong>
                   <!-- <p>Min-qualification: {{ job.minimun_qualification }}</p> -->
                   <a href="{% url 'jobs:jobDetail' job.slug %}" class="stretched-link"></a>
                 </div>
               {% endfor %}
-                       
+
             {% endif %}
-              
+
         </div>
     </div>
     <!-- Latest jobs section ends here-->
@@ -121,12 +121,12 @@
               <h3 class="text-center m-0 notification-card-header">Admit card</h3>
             </div>
             <ul class="list-group list-group-flush bg-transparent">
-              
-                            
+
+
               {% for job_notification in job_by_admitcards %}
                 <a class="list-group-item bg-transparent" href="{% url 'jobs:jobDetail' job_notification.slug %}">{{ job_notification.post_title }}</a>
               {% endfor %}
-                      
+
               </ul>
             <a href="{% url 'jobs:list_by_type' 'admit-card' %}" class="text-center">View more</a>
           </div>
@@ -138,11 +138,11 @@
             </div>
             <ul class="list-group list-group-flush bg-transparent">
 
-                            
+
               {% for job_notification in job_by_results %}
                 <a class="list-group-item bg-transparent" href="{% url 'jobs:jobDetail' job_notification.slug %}">{{ job_notification.post_title|title }}</a>
               {% endfor %}
-            
+
             </ul>
             <a href="{% url 'jobs:list_by_type' 'result' %}" class="text-center">View more</a>
           </div>
@@ -150,14 +150,14 @@
         <div class="col-md-4 my-3">
           <div class="card right-notification-card bg-white py-3 px-3">
             <div class="card-header bg-transparent">
-              <h3 class="text-center m-0 notification-card-header">Job notifications</h3>
+              <h3 class="text-center m-0 notification-card-header">Vigyaapan</h3>
             </div>
             <ul class="list-group list-group-flush bg-transparent">
-              
+
               {% for job_notification in job_notifications %}
                 <a class="list-group-item bg-transparent" href="{% url 'jobs:jobDetail' job_notification.slug %}">{{ job_notification.post_title|title }}</a>
               {% endfor %}
-                                           
+
             </ul>
             <a href="{% url 'jobs:jobList' %}" class="text-center">View more</a>
           </div>
@@ -172,11 +172,11 @@
               <h3 class="text-center m-0 notification-card-header">Answer key</h3>
             </div>
             <ul class="list-group list-group-flush bg-transparent">
-              
+
               {% for job_notification in job_by_answerkey %}
                 <a class="list-group-item bg-transparent" href="{% url 'jobs:jobDetail' job_notification.slug %}">{{ job_notification.post_title|title }}</a>
               {% endfor %}
-                      
+
             </ul>
             <a href="{% url 'jobs:list_by_type' 'answerkey' %}" class="text-center">View more</a>
           </div>
@@ -187,11 +187,11 @@
               <h3 class="text-center m-0 notification-card-header">Syllabus</h3>
             </div>
             <ul class="list-group list-group-flush bg-transparent">
-              
+
               {% for job_notification in job_syllabus %}
                 <a class="list-group-item bg-transparent" href="{% url 'jobs:jobDetail' job_notification.slug %}">{{ job_notification.post_title|title }}</a>
               {% endfor %}
-                      
+
             </ul>
             <a href="{% url 'jobs:list_by_type' 'syllabus' %}" class="text-center">View more</a>
           </div>
@@ -202,11 +202,11 @@
               <h3 class="text-center m-0 notification-card-header">Admission</h3>
             </div>
             <ul class="list-group list-group-flush bg-transparent">
-              
+
               {% for job_notification in admissions %}
                 <a class="list-group-item bg-transparent" href="{% url 'jobs:jobDetail' job_notification.slug %}">{{ job_notification.post_title|title }}</a>
               {% endfor %}
-                      
+
             </ul>
             <a href="{% url 'jobs:list_by_type' 'admission' %}" class="text-center">View more</a>
           </div>

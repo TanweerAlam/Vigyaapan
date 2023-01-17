@@ -16,14 +16,33 @@ from taggit_autosuggest.managers import TaggableManager
 class State(models.Model):
     # state_code = models.CharField(max_length=10, unique=True, null=False, blank=False)
     state = models.CharField(max_length=30, null=True, blank=True)
+    slug = models.SlugField(max_length=50, null=True, blank=True)
 
     def __str__(self):
         return self.state
 
-
+    def save(self, *args, **kwargs):
+        if not self.slug and self.state:
+            self.slug = slugify(self.state)
+        return super(State, self).save(*args, **kwargs)
     # def get_default_state():
     #     return State.objects.all().first()
 
+class Ministry(models.Model):
+    ministry = models.CharField(max_length=180, null=True, blank=True)
+    slug = models.CharField(max_length=200, null=True, blank=True)
+
+    class Meta:
+        verbose_name = 'Ministry'
+        verbose_name_plural = 'Ministries'
+
+    def __str__(self):
+        return self.ministry
+    
+    def save(self, *args, **kwargs):
+        if not self.slug and self.ministry:
+            self.slug = slugify(self.ministry)
+        return super(Ministry, self).save(*args, **kwargs)
 
 
 class Job(models.Model):
@@ -45,12 +64,12 @@ class Job(models.Model):
     post_title = models.CharField(max_length=200, default='Default name', null=False, blank=False)
     # state = models.CharField(max_length=30, default='Central')
     state = models.ForeignKey(State, on_delete=models.SET_NULL, default=None, null=True, blank=True)
+    # dept_of_ministry = models.CharField(max_length=50, null=True, blank=True)
+    ministry = models.ForeignKey(Ministry, on_delete=models.SET_NULL, default=None, null=True, blank=True)
     tags = TaggableManager()
 
-    brief_intro = models.TextField(max_length=500, default='Brief introduction of the job post')
-    # body = models.TextField(max_length=500, default='Information of the job post', null=True, blank=True)
+    brief_intro = models.TextField(max_length=600, default='Brief introduction of the job post')
     content = HTMLField()
-    # exam_fee = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(3000)])
     
     notification_date = models.DateField(null=True, blank=True)
     online_application_date = models.DateField(null=True, blank=True)
@@ -64,9 +83,9 @@ class Job(models.Model):
     maximum_age = models.PositiveIntegerField(default=28, validators=[MinValueValidator(18), MaxValueValidator(60)])
     minimum_qualification = models.CharField(max_length=50, choices=QUALIFICATION)
 
-    dept_of_ministry = models.CharField(max_length=50, null=True, blank=True)
     total_posts = models.PositiveIntegerField()
-    application_fee = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0)])
+    application_fee = HTMLField(default="Not announced")
+    # application_fee = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0)])
     # .....
     fee_last_date = models.DateField(null=True, blank=True)
     correction_date = models.DateField(null=True, blank=True)
@@ -74,9 +93,9 @@ class Job(models.Model):
     # .....
 
     # .....
-    general_obc_fee = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(3000)])
-    sc_st_ph_fee = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(3000)])
-    female_fee = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(3000)])
+    # general_obc_fee = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(3000)])
+    # sc_st_ph_fee = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(3000)])
+    # female_fee = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(3000)])
     # .....
 
     official_site = models.URLField(null=True, blank=True, default='')
@@ -100,7 +119,7 @@ class Job(models.Model):
         verbose_name = 'Job'
         verbose_name_plural = 'Jobs'
 
-        ordering=['-application_expiry_date']
+        ordering=['-created_on']
 
 
     def __str__(self):

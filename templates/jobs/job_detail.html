@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 {% load static %}
 
-    
+
     {% block extra_sheets %}
       <link rel="stylesheet" href="{% static 'css/custom.css' %}">
     {% endblock extra_sheets %}
-        
+
     {% block meta %}
       <meta name="description" content="{{object.brief_intro}}">
       <meta name="keywords" content="{{object.keywords}}">
@@ -18,7 +18,7 @@
       <meta property="og:description" content="{{object.brief_intro|slice:':88'}}">
       <!--  -->
     {% endblock meta_opengraph %}
-      
+
     {% block meta_twitter %}
       <!-- for twitter-card -->
       <meta name="twitter:title" content="{{ object.post_title }}">
@@ -27,161 +27,165 @@
       <!-- ..... -->
     {% endblock meta_twitter %}
 
-    
+
     {% block pagetitle %}
       {{ object.post_title }}
     {% endblock pagetitle %}
-      
-    
+
+
     {% block content %}
-    <div class="container my-5">
-      <div class="row justify-content-center">
-        <div class="col-10 col-sm-8 detail-card p-4 justify-content-center ">
-          <hr>
-          <!-- <h1>Bihar BPSC 68th Recruitment 2022 Apply Online for 281 Post</h1> -->
-          <h1>{{ object.post_title|title }} {{ object.application_mode }} 
-              {% if object.total_posts %}
-                for {{ object.total_posts }} posts
-              {% endif %}
-          </h1>
-          <hr>
-          <br>
-          
-          {% if object.notification_date %}
-            <h2>{{ object.notification_date }}</h2>
-          {% endif %}
-            
-          <br>
-          <p>
-            {{ object.brief_intro}}
-          </p>
-          <ul>
-            <li>Minimum qualification: {{object.minimum_qualification}} </li>
-          </ul>
-  
-          <div class="container my-3">
-            <div class="row">
-              <ul class="nav nav-pills container justify-content-center">
-               
-                {% for tag in object.tags.all %}
-                  <li class="nav-item mx-1 my-1 category-pill bg-light">
-                    <a class="nav-link" aria-current="page" href="{% url 'jobs:job_list_by_tags' tag.slug %}">{{tag.name}}</a>
-                  </li>
-                {% endfor %}
-    
-              </ul>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
       <div class="container my-5">
         <div class="row justify-content-center">
-          <div class="col-10 col-sm-8 detail-card p-4 justify-content-center ">
+          <div class="col-10 col-sm-8 detail-card p-4 justify-content-center bg-light">
+            <hr>
+            <!-- <h1>Bihar BPSC 68th Recruitment 2022 Apply Online for 281 Post</h1> -->
+            <h1>{{ object.post_title|title }} {{ object.application_mode }}
+                {% if object.total_posts %}
+                  for {{ object.total_posts }} posts
+                {% endif %}
+            </h1>
+            <hr>
+            <br>
+
+            {% if object.notification_date %}
+              <h2>{{ object.notification_date }}</h2>
+            {% endif %}
+
+            <br>
+            <p>
+              {{ object.brief_intro}}
+            </p>
+            <ul>
+              <li>Minimum qualification: <strong>{{object.minimum_qualification}}</strong> </li>
+            </ul>
+
+            <div class="container my-3">
+              <div class="row">
+                <ul class="nav nav-pills container justify-content-center">
+
+                  {% for tag in object.tags.all %}
+                    <li class="nav-item mx-1 my-1 category-pill bg-light fw-semibold">
+                      <a class="nav-link" aria-current="page" href="{% url 'jobs:job_list_by_tags' tag.slug %}">{{tag.name}}</a>
+                    </li>
+                  {% endfor %}
+
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <!--  -->
+      <div class="container my-5">
+        <div class="row justify-content-center">
+          <div class="col-10 col-sm-8 detail-card p-4 justify-content-center bg-light">
             <hr>
             <h1>{{object.post_title|title}} vacancy details</h1>
             <hr>
             <br>
-            
-            {% if object.content %}
-              {{object.content|safe}}
-            {% else %}
-              <h2>Will be updated soon...</a></h2>
-            {% endif %}
-              
-            <br>
+            <div class="container-fluid overflow-scroll">
+              {% if object.content %}
+                {{object.content|safe}}
+              {% else %}
+                <h2>Will be updated soon...</a></h2>
+              {% endif %}
+            </div>
           </div>
         </div>
       </div>
-
+      <!--  -->
       <div class="container">
         <div class="row justify-content-center">
-          <div class="col-10 col-sm-4 detail-card p-4 mb-5 mx-1 justify-content-center ">
+          <div class="col-10 col-sm-4 detail-card p-4 mb-5 mx-1 justify-content-center bg-light">
             <hr>
             <h1>Important Dates</h1>
             <hr>
             <br>
             <ul>
-              <li>Application Begin : 
+              <li>Application Begin :
               {% if object.online_application_date %}
               <strong>{{object.online_application_date}}</strong>
               {% else %}
                 To be announced
               {% endif %}
                 </li>
-              <li>Last Date for Apply Online : 
+              <li>Last Date for Apply Online :
               {% if object.application_expiry_date %}
-              <strong>{{object.application_expiry_date}}</strong>
+              <strong>{{object.application_expiry_date|date:"M d, Y"}}</strong>
               {% else %}
                 To be announced
               {% endif %}
               </li>
-              <li>Pay Exam Fee Last Date : 
+              <li>Pay Exam Fee Last Date :
                 {% if object.fee_last_date %}
-                  {{object.fee_last_date}}
+                <strong>{{object.fee_last_date}}</strong>
                 {% else %}
                   Unannounced
                 {% endif %}
               </li>
 
               {% if object.correction_date %}
-              <li>Correction Last Date : {{object.correction_date}}</li>
+              <li>Correction Last Date : <strong>{{object.correction_date}}</strong></li>
               {% endif %}
 
               <li>Exam Date :
                 {% if object.exam_date %}
-                  {{object.exam_date}}
+                  <strong>{{object.exam_date}}</strong>
                 {% else %}
                   Unannounced
                 {% endif %}
               </li>
             </ul>
           </div>
-          <div class="col-10 col-sm-4 detail-card p-4 mb-5 mx-1 justify-content-center ">
+          <div class="col-10 col-sm-4 detail-card p-4 mb-5 mx-1 justify-content-center bg-light">
             <hr>
             <h1>Application Fee</h1>
             <hr>
             <br>
-            <ul>
-              <li>General / OBC/ Other State : 
-                {% if object.general_obc_fee %}
-                  {{object.general_obc_fee}}
-                {% else %}
+            <!--<ul>-->
+            <!--  <li>General / OBC/ Other State :-->
+            <!--    {% if object.general_obc_fee %}-->
+            <!--      {{object.general_obc_fee}}-->
+            <!--    {% else %}-->
+            <!--      Unannounced-->
+            <!--    {% endif %}-->
+            <!--    /-</li>-->
+            <!--  <li>SC / ST / PH :-->
+            <!--    {% if object.sc_st_ph_fee %}-->
+            <!--      {{object.sc_st_ph_fee}}-->
+            <!--    {% else %}-->
+            <!--      Unannounced-->
+            <!--    {% endif %}-->
+            <!--    /-</li>-->
+            <!--  <li>Female Candidate :-->
+            <!--    {% if object.female_fee %}-->
+            <!--      {{object.female_fee}}-->
+            <!--    {% else %}-->
+            <!--      Unannounced-->
+            <!--    {% endif %}-->
+            <!--    /-</li>-->
+            <!--  <li>Pay the Exam Fee Through Online / Offline Fee Mode Only</li>-->
+            <!--</ul>-->
+            {% if object.application_fee %}
+                {{object.application_fee|safe}}
+            {% else %}-->
                   Unannounced
-                {% endif %}
-                /-</li>
-              <li>SC / ST / PH : 
-                {% if object.sc_st_ph_fee %}
-                  {{object.sc_st_ph_fee}}
-                {% else %}
-                  Unannounced
-                {% endif %}
-                /-</li>
-              <li>Female Candidate :
-                {% if object.female_fee %}
-                  {{object.female_fee}}
-                {% else %}
-                  Unannounced
-                {% endif %}
-                /-</li>
-              <li>Pay the Exam Fee Through Online / Offline Fee Mode Only</li>
-            </ul>
+            {% endif %}
           </div>
         </div>
       </div>
       <!--  -->
       <div class="container mb-5">
         <div class="row justify-content-center">
-          <div class="col-10 col-sm-8 detail-card p-4 justify-content-center ">
+          <div class="col-10 col-sm-8 detail-card p-4 justify-content-center bg-light">
             <hr>
             <h1>Age Limit</h1>
             <hr>
             <br>
             <ul>
-              <li>Minimum Age : {{ object.minimum_age }} Years (Post Wise)</li>
-              <li>Maximum Age : {{ object.maximum_age }} Years</li>
+              <li>Minimum Age : <strong>{{ object.minimum_age }}</strong> Years (Post Wise)</li>
+              <li>Maximum Age : <strong>{{ object.maximum_age }}</strong> Years</li>
               <!-- <li>Maximum Age : 40 Female</li> -->
               <li>Age Relaxation as per state or central rules </li>
             </ul>
@@ -191,32 +195,32 @@
       <!--  -->
       <div class="container mb-5">
         <div class="row justify-content-center">
-          <div class="col-10 col-sm-8 detail-card p-4 justify-content-center ">
+          <div class="col-10 col-sm-8 detail-card p-4 justify-content-center bg-light">
             <hr>
             <h1>Some Useful Important Links</h1>
             <hr>
             <br>
-            <div class="grid-container">              
+            <div class="grid-container">
               {% if object.application_link %}
-                <a href="" class="text-decoration-none"><div class="grid-item">Apply online</div></a>
+                <a href="{{object.application_link}}" class="text-decoration-none"><div class="grid-item">Apply online</div></a>
               {% else %}
                 <div class="grid-item">Application link will be updated soon...</div>
               {% endif %}
 
-              {% if object.application_link %}
-                <a href="" class="text-decoration-none"><div class="grid-item">Download notification</div></a>
+              {% if object.notification_link %}
+                <a href="{{object.notification_link}}" class="text-decoration-none"><div class="grid-item">Download notification</div></a>
               {% else %}
                 <div class="grid-item">Notification link will be updated soon...</div>
               {% endif %}
 
-              {% if object.application_link %}
-                <a href="" class="text-decoration-none"><div class="grid-item">Download result</div></a>
+              {% if object.result_link %}
+                <a href="{{object.result_link}}" class="text-decoration-none"><div class="grid-item">Download result</div></a>
               {% else %}
                 <div class="grid-item">Result link will be updated soon...</div>
               {% endif %}
 
-              {% if object.application_link %}
-                <a href="" class="text-decoration-none"><div class="grid-item">Official website</div></a>
+              {% if object.official_site %}
+                <a href="{{object.official_site}}" class="text-decoration-none"><div class="grid-item">Official website</div></a>
               {% else %}
                 <div class="grid-item">Official website link will be updated soon...</div>
               {% endif %}
@@ -233,5 +237,5 @@
       <!-- Share page -->
 
     {% endblock content %}
-  
+
 

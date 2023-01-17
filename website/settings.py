@@ -29,9 +29,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-l&v)2s*bb5+x^o+3q4)+s1#9+f^=zwmxe%1@llz_jv^o4yq=cf'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['testsarkari.pythonanywhere.com' ]
 
 SITE_ID = 1
 # Application definition
@@ -99,24 +99,23 @@ WSGI_APPLICATION = 'website.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 
-# if DEBUG:
-#     DATABASES = {
-#         'default': {
-#             'ENGINE': 'django.db.backends.sqlite3',
-#             'NAME': BASE_DIR / 'db.sqlite3',
-#         }
-#     }
-# else:
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': env('DATABASE_NAME'),
-        'USER': env('DATABASE_USER'),
-        'PASSWORD': env('DATABASE_PASSWORD'),
-        'HOST': '',
-        'PORT': env('DATABASE_PORT'),
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': env('DATABASE_NAME'),
+#         'USER': env('DATABASE_USER'),
+#         'PASSWORD': env('DATABASE_PASSWORD'),
+#         'HOST': '',
+#         'PORT': env('DATABASE_PORT'),
+#     }
+# }
 
 
 # Password validation
@@ -177,7 +176,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # LOGIN_REDIRECT_URL = "users:dashboard"
 # LOGOUT_REDIRECT_URL = "main:index"
 
-# 
+#
 AUTH_USER_MODEL = "users.CustomUser"
 
 # # Email backend
@@ -241,8 +240,8 @@ MESSAGE_TAGS = {
         messages.ERROR: 'alert-danger',
 }
 
-# 
-# 
+#
+#
 # Logging system
 # LOGGING = {
 #     'version': 1,

@@ -6,9 +6,9 @@
       <form method="post" action="{% url 'newsletters:new' %}" class="row justify-content-center align-items-center g-3">
         {% csrf_token %}
         <div class="col-7 col-sm-6 mx-0 my-0 p-0">
-          <input type="email" name="email" class="form-control form-control-lg rounded-pill bg-light" placeholder="Subscribe here..." />
+          <input type="email" name="email" class="form-control form-control-lg rounded-pill bg-light" placeholder="Enter email here..." />
         </div>
-        <div class="col-auto mx-1 my-0 p-0">
+        <div class="col-auto mx-3 my-0 p-0">
           <button type="submit" class="btn btn-lg btn-primary mb-3 rounded-pill">Subscribe</button>
         </div>
       </form>

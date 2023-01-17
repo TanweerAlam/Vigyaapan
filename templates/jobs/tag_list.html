@@ -8,18 +8,18 @@
             <div class="row">
               <h1 class="sectional-heading" style="padding: 10px;">Tags</h1>
             </div>
-      
+
             <!-- Tags -->
             <div class="container">
               <div class="row justify-content-center">
                 <ul class="nav nav-pills container justify-content-center">
-                 
+
                   {% for tag in tag_list %}
-                    <li class="nav-item mx-1 my-1 category-pill bg-light">
+                    <li class="nav-item mx-1 my-1 category-pill bg-light fw-semibold">
                       <a class="nav-link" aria-current="page" href="{% url 'jobs:job_list_by_tags' tag.slug%}">{{tag.name}}</a>
                     </li>
                   {% endfor %}
-      
+
                 </ul>
               </div>
             </div>
@@ -27,4 +27,3 @@
           </div>
           <!-- Category section ends here -->
 {% endblock content %}
-    
