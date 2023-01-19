@@ -151,4 +151,5 @@ def compress(image):
     im_io = BytesIO()
     im.save(im_io, 'jpeg', quality=50, optimize=True)
     new_image = File(im_io, name=image.name)
+    im.close()
     return new_image

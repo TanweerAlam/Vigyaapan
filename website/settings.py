@@ -62,6 +62,7 @@ INSTALLED_APPS = [
     "taggit",
     "taggit_autosuggest",
     "admin_honeypot",
+    'django_cleanup.apps.CleanupConfig',
 ]
 
 MIDDLEWARE = [
