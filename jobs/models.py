@@ -11,25 +11,31 @@ from tinymce.models import HTMLField
 # from taggit.managers import TaggableManager
 from taggit_autosuggest.managers import TaggableManager
 
+# for image uploading
+from django.core.files import File
+from io import BytesIO
+from PIL import Image
+
 
 # Create your models here.
 class State(models.Model):
     # state_code = models.CharField(max_length=10, unique=True, null=False, blank=False)
-    state = models.CharField(max_length=30, null=True, blank=True)
+    # state = models.CharField(max_length=30, null=True, blank=True)
+    name = models.CharField(max_length=30, null=True, blank=True)
     slug = models.SlugField(max_length=50, null=True, blank=True)
 
     def __str__(self):
-        return self.state
+        return self.name
 
     def save(self, *args, **kwargs):
-        if not self.slug and self.state:
-            self.slug = slugify(self.state)
+        if not self.slug and self.name:
+            self.slug = slugify(self.name)
         return super(State, self).save(*args, **kwargs)
     # def get_default_state():
     #     return State.objects.all().first()
 
 class Ministry(models.Model):
-    ministry = models.CharField(max_length=180, null=True, blank=True)
+    name = models.CharField(max_length=180, null=True, blank=True)
     slug = models.CharField(max_length=200, null=True, blank=True)
 
     class Meta:
@@ -37,11 +43,11 @@ class Ministry(models.Model):
         verbose_name_plural = 'Ministries'
 
     def __str__(self):
-        return self.ministry
+        return self.name
 
     def save(self, *args, **kwargs):
-        if not self.slug and self.ministry:
-            self.slug = slugify(self.ministry)
+        if not self.slug and self.name:
+            self.slug = slugify(self.name)
         return super(Ministry, self).save(*args, **kwargs)
 
 
@@ -143,6 +149,6 @@ class Job(models.Model):
 def compress(image):
     im = Image.open(image)
     im_io = BytesIO()
-    im.save(im_io, quality=80, optimize=True)
+    im.save(im_io, 'jpeg', quality=50, optimize=True)
     new_image = File(im_io, name=image.name)
     return new_image
