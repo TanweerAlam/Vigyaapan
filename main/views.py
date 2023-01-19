@@ -26,7 +26,7 @@ class IndexView(TemplateView):
         context = super(IndexView, self).get_context_data(**kwargs)
         context['job_notifications'] = Job.objects.filter(is_published=True).order_by('-created_on').values('post_title', 'slug')[:10]
         context['job_by_results'] = Job.objects.filter( result_link__isnull=False, is_published=True).order_by('-updated_on').values('post_title', 'slug')[:10]
-        context['featured_jobs'] = Job.objects.filter(is_featured=True, is_published=True).order_by('-updated_on').values('post_title', 'slug', 'total_posts', 'application_expiry_date')[:6]
+        context['featured_jobs'] = Job.objects.filter(is_featured=True, is_published=True).order_by('-created_on').values('post_title', 'slug', 'total_posts', 'application_expiry_date')[:6]
         context['job_by_admitcards'] = Job.objects.filter(admit_card_link__isnull=False, is_published=True).order_by('-updated_on').values('post_title', 'slug')[:10]
         context['job_by_answerkey'] = Job.objects.filter(answerkey_link__isnull=False, is_published=True).order_by('-updated_on').values('post_title', 'slug')[:10]
         context['job_syllabus'] = Job.objects.filter(syllabus_link__isnull=False, is_published=True).order_by('-updated_on').values('post_title', 'slug')[:10]

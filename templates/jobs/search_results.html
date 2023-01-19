@@ -5,9 +5,9 @@
 
 
 {% block meta %}
-    
+
 {% endblock meta %}
-    
+
 
 {% block meta_opengraph %}
 <!-- for opengraph -->
@@ -29,13 +29,13 @@
     {% include 'partials/_search_hero.html' %}
     <div class="container my-5 text-center">
         <div class="row">
-            
+
             {% if not job_list %}
                 <h1>No results</h1>
             {% else %}
                 <h1>Search results</h1>
             {% endif %}
-                
+
         </div>
         <!--  -->
         <div class="row justify-content-center">
@@ -46,18 +46,16 @@
                   <h4 class="text-center m-0 notification-card-header">Search results</h4>
                 </div> -->
                 <ul class="list-group list-group-flush bg-transparent">
-                  
+
                     {% if job_list %}
                         {% for job in job_list %}
-                            
-                            <a class="list-group-item bg-transparent" href="{{ job.get_absolute_url }}">{{ job.post_title }}</a>
-                            <a class="list-group-item bg-transparent" href="{{ job.get_absolute_url }}">{{ job.post_title }}</a>
 
+                            <a class="list-group-item bg-transparent" href="{{ job.get_absolute_url }}">{{ job.post_title }}</a>
 
                         {% endfor %}
                     {% endif %}
-                  
-                          
+
+
                 </ul>
               </div>
             </div>
@@ -66,7 +64,7 @@
           <!--  -->
         <!-- <div class="row">
             <ul>
-                
+
                 {% if job_list %}
                     {% for job in job_list %}
                         <a href="{{ job.get_absolute_url }}" class="text-decoration-none">
@@ -75,7 +73,7 @@
                         </a>
                     {% endfor %}
                 {% endif %}
-                    
+
             </ul>
         </div> -->
 

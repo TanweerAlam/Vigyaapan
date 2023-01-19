@@ -84,15 +84,21 @@
 
               {% for job in featured_jobs %}
                 <div class="col-lg-3 col-sm-5 col-11 mb-3 rounded border bg-light py-3 px-4 m-3 card cards">
-                  <h4 style="font-weight: 700;">{{job.post_title|title}}</h4>
-                  <p>Last date:
-                  {% if job.application_expiry_date %}
-                    {{ job.application_expiry_date|date:"M d, Y" }}
-                  {% else %}
-                    Not announced
-                  {% endif %}
-                     </p>
-                  <strong><span style="color: #0d6efd;">{{ job.total_posts }} seats</span></strong>
+                    <div class="flex-grow-1">
+                        <h4 style="font-weight: 700;">{{job.post_title|title}}</h4>
+                    </div>
+                    <div>
+                        <p>Last date:
+                          {% if job.application_expiry_date %}
+                            {{ job.application_expiry_date|date:"M d, Y" }}
+                          {% else %}
+                            Not announced
+                          {% endif %}
+                        </p>
+                    </div>
+                    <div>
+                      <strong><span style="color: #0d6efd;">{{ job.total_posts }} seats</span></strong>
+                    </div>
                   <!-- <p>Min-qualification: {{ job.minimun_qualification }}</p> -->
                   <a href="{% url 'jobs:jobDetail' job.slug %}" class="stretched-link"></a>
                 </div>
@@ -116,7 +122,7 @@
     <div class="container mb-5">
       <div class="row justify-content-evenly">
         <div class="col-md-4 my-3">
-          <div class="card left-notification-card bg-white py-3 px-3">
+          <div class="card left-notification-card bg-light py-3 px-3">
             <div class="card-header bg-transparent">
               <h3 class="text-center m-0 notification-card-header">Admit card</h3>
             </div>
@@ -132,7 +138,7 @@
           </div>
         </div>
         <div class="col-md-4 my-3">
-          <div class="card top-mid-notification-card bg-white py-3 px-3">
+          <div class="card top-mid-notification-card bg-light py-3 px-3">
             <div class="card-header bg-transparent">
               <h3 class="text-center m-0 notification-card-header">Result</h3>
             </div>
@@ -148,7 +154,7 @@
           </div>
         </div>
         <div class="col-md-4 my-3">
-          <div class="card right-notification-card bg-white py-3 px-3">
+          <div class="card right-notification-card bg-light py-3 px-3">
             <div class="card-header bg-transparent">
               <h3 class="text-center m-0 notification-card-header">Vigyaapan</h3>
             </div>
@@ -167,7 +173,7 @@
     <div class="container mb-5">
       <div class="row justify-content-evenly"> -->
         <div class="col-md-4 my-3">
-          <div class="card right-notification-card bg-white py-3 px-3">
+          <div class="card right-notification-card bg-light py-3 px-3">
             <div class="card-header bg-transparent">
               <h3 class="text-center m-0 notification-card-header">Answer key</h3>
             </div>
@@ -182,7 +188,7 @@
           </div>
         </div>
         <div class="col-md-4 my-3">
-          <div class="card bottom-mid-notification-card bg-white py-3 px-3">
+          <div class="card bottom-mid-notification-card bg-light py-3 px-3">
             <div class="card-header bg-transparent">
               <h3 class="text-center m-0 notification-card-header">Syllabus</h3>
             </div>
@@ -197,7 +203,7 @@
           </div>
         </div>
         <div class="col-md-4 my-3">
-          <div class="card left-notification-card bg-white py-3 px-3">
+          <div class="card left-notification-card bg-light py-3 px-3">
             <div class="card-header bg-transparent">
               <h3 class="text-center m-0 notification-card-header">Admission</h3>
             </div>

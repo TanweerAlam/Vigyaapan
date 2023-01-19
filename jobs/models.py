@@ -38,7 +38,7 @@ class Ministry(models.Model):
 
     def __str__(self):
         return self.ministry
-    
+
     def save(self, *args, **kwargs):
         if not self.slug and self.ministry:
             self.slug = slugify(self.ministry)
@@ -62,7 +62,7 @@ class Job(models.Model):
     keywords = models.CharField(max_length=200, default='Default name', null=False, blank=False)
 
     post_title = models.CharField(max_length=200, default='Default name', null=False, blank=False)
-    # state = models.CharField(max_length=30, default='Central')
+    image = models.ImageField(upload_to='jobs_image/%Y/%m/', blank=True, null=True)
     state = models.ForeignKey(State, on_delete=models.SET_NULL, default=None, null=True, blank=True)
     # dept_of_ministry = models.CharField(max_length=50, null=True, blank=True)
     ministry = models.ForeignKey(Ministry, on_delete=models.SET_NULL, default=None, null=True, blank=True)
@@ -70,7 +70,7 @@ class Job(models.Model):
 
     brief_intro = models.TextField(max_length=600, default='Brief introduction of the job post')
     content = HTMLField()
-    
+
     notification_date = models.DateField(null=True, blank=True)
     online_application_date = models.DateField(null=True, blank=True)
     application_expiry_date = models.DateTimeField(null=True, blank=True)
@@ -129,9 +129,20 @@ class Job(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug and self.post_title:
             self.slug = slugify(self.post_title + "  " + str(self.state) + " " + str(self.total_posts))
+        if self.image:
+            picture = self.image
+            if picture.size > 0.1*1024*1024:
+                self.image = compress(picture)
         return super(Job, self).save(*args, **kwargs)
 
-    
+
     def get_absolute_url(self):
         return reverse('jobs:jobDetail', kwargs={"slug": self.slug})
 
+
+def compress(image):
+    im = Image.open(image)
+    im_io = BytesIO()
+    im.save(im_io, quality=80, optimize=True)
+    new_image = File(im_io, name=image.name)
+    return new_image

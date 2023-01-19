@@ -2,7 +2,7 @@ from django.http import HttpResponse
 from django.shortcuts import render
 # from django.views.generic.base import TemplateView
 from django.views.generic import ListView, DetailView
-#  CreateView, DeleteView 
+#  CreateView, DeleteView
 # from django.views.generic.edit import UpdateView
 from django.urls import reverse_lazy
 # from django.contrib.auth.mixins import (LoginRequiredMixin, UserPassesTestMixin)
@@ -52,9 +52,9 @@ class SearchListView(ListView):
         query = self.request.GET.get('search', None)
         if query:
             return Job.objects.filter(
-                Q(post_title__icontains=query) | Q(post_title__icontains=query)
-            )
-        
+                Q(post_title__icontains=query) | Q(tags__name__icontains=query) | Q(ministry__name__icontains=query)
+            ).distinct()
+
 
 # class JobListView(LoginRequiredMixin, ListView):
 class JobListView(ListView):
@@ -114,7 +114,7 @@ def archiveList(request):
 # class SuperUserPassesTestMixin(LoginRequiredMixin, UserPassesTestMixin):
 #     def test_func(self):
 #         return self.request.user.is_superuser
-    
+
 #     def handle_no_permission(self):
 #         return HttpResponse('<h1>Sorry, you are not authorised to access this page. Please, ask the admin...</h1>')
 
