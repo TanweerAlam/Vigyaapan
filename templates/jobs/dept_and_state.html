@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block pagetitle %}
+    | Department and States
+{% endblock pagetitle %}
+
+{% block meta %}
+    <meta name="description" content="SarkariVigyaapan- A government job notifications portal, सरकारी विज्ञापन, Sarkari naukri, Sarkari exams, ">
+{% endblock meta %}
+
+{% block meta_opengraph %}
+<!-- for opengraph -->
+<meta property="og:title" content="SarkariVigyaapan | Job postings">
+<meta property="og:url" content={{request.build_absolute_uri}}>
+<meta property="og:description" content="Lists of job notifications">
+<!--  -->
+{% endblock meta_opengraph %}
+
+{% block meta_twitter %}
+<!-- for twitter-card -->
+<meta name="twitter:title" content="SarkariVigyaapan | Job postings">
+<meta name="twitter:url" content="{{request.build_absolute_uri}}">
+<meta name="twitter:description" content="Lists of job notifications">
+<!-- ..... -->
+{% endblock meta_twitter %}
+    
+
+<!-- templates/books/search_results.html -->
+
+{% block content %}
+    <div class="container my-5 text-center">
+        <div class="row">
+            <h1>Department and States</h1>
+        </div>
+        <!--  -->
+        <div class="row justify-content-center">
+
+            <div class="col-8 col-sm-5 my-3 bg-light mx-2">
+                <div class="row">
+                    <h2>States</h2>
+                </div>
+                {% if state_list %}
+                <div class="card bg-white py-3 px-3">
+
+                    <ul class="list-group list-group-flush bg-transparent">
+                    
+                            {% for state in state_list %}
+                                
+                                <a class="list-group-item bg-transparent" href="{% url 'jobs:state_jobList' state.slug %}">{{ state.name }}</a>
+
+                            {% endfor %}
+                            
+                    </ul>
+                </div>
+                {% else %}
+                Not available yet...
+                {% endif %}
+
+            </div>
+
+            <div class="col-8 col-sm-5 my-3 bg-light mx-2">
+                <div class="row">
+                    <h2>Department</h2>
+                </div>
+                {% if department_list %}
+                <div class="card bg-white py-3 px-3">
+  
+                  <ul class="list-group list-group-flush bg-transparent">
+                    
+                          {% for department in department_list %}
+                              
+                              <a class="list-group-item bg-transparent" href="{% url 'jobs:deptt_jobList' department.slug %}">{{ department.name }}</a>
+  
+                          {% endfor %}
+                            
+                  </ul>
+                </div>
+                {% else %}
+                Not available yet...
+                {% endif %}
+
+              </div>
+        </div>
+
+    </div>
+
+{% endblock content %}

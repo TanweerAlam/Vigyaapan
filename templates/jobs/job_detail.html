@@ -190,12 +190,12 @@
             <h1>Age Limit</h1>
             <hr>
             <br>
-            <ul>
+            {{object.age|safe}}
+            <!-- <ul>
               <li>Minimum Age : <strong>{{ object.minimum_age }}</strong> Years (Post Wise)</li>
               <li>Maximum Age : <strong>{{ object.maximum_age }}</strong> Years</li>
-              <!-- <li>Maximum Age : 40 Female</li> -->
               <li>Age Relaxation as per state or central rules </li>
-            </ul>
+            </ul> -->
           </div>
         </div>
       </div>

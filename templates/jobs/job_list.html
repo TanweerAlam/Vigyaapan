@@ -25,7 +25,7 @@
 <meta name="twitter:description" content="Lists of job notifications">
 <!-- ..... -->
 {% endblock meta_twitter %}
-    
+
 
 <!-- templates/books/search_results.html -->
 
@@ -43,16 +43,18 @@
                   <h4 class="text-center m-0 notification-card-header">Search results</h4>
                 </div> -->
                 <ul class="list-group list-group-flush bg-transparent">
-                  
+
                     {% if job_list %}
                         {% for job in job_list %}
-                            
+
                             <a class="list-group-item bg-transparent" href="{{ job.get_absolute_url }}">{{ job.post_title }}</a>
 
                         {% endfor %}
+                    {% else %}
+                        Not available yet...
                     {% endif %}
-                  
-                          
+
+
                 </ul>
               </div>
             </div>
@@ -61,7 +63,7 @@
           <!--  -->
         <!-- <div class="row">
             <ul>
-                
+
                 {% if job_list %}
                     {% for job in job_list %}
                         <a href="{{ job.get_absolute_url }}" class="text-decoration-none">
@@ -70,7 +72,7 @@
                         </a>
                     {% endfor %}
                 {% endif %}
-                    
+
             </ul>
         </div> -->
 

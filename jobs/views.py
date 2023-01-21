@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+# from django.http import HttpResponse
 from django.shortcuts import render
 # from django.views.generic.base import TemplateView
 from django.views.generic import ListView, DetailView
@@ -9,10 +9,10 @@ from django.urls import reverse_lazy
 from django.core.paginator import Paginator
 from django.db.models import Q
 
-from .models import Job, State
-from .forms import JobCreationUpdationForm
+from .models import Job, State, Ministry
+# from .forms import JobCreationUpdationForm
 
-from datetime import date
+# from datetime import date
 
 from taggit.models import Tag
 
@@ -23,7 +23,7 @@ def jobLists(request, keyword):
     job_list = None
     page_number = request.GET.get('page')
 
-    today = date.today()
+    # today = date.today()
 
     if keyword == 'admit-card':
         job_list = Job.objects.filter(admit_card_link__isnull=False, is_published=True).order_by('-updated_on').values('post_title', 'slug')
@@ -75,13 +75,42 @@ class JobListByTagView(ListView):
     model = Job
     template_name = "jobs/tag_detail_list.html"
     context_object_name = 'object_list'
-    paginate_by = 100
+    paginate_by = 50
 
     def get_queryset(self):
         return Job.objects.filter(tags__slug=self.kwargs.get('slug'))
 
 def archiveList(request):
     return render(request, 'jobs/archive_page.html')
+
+
+def depttStateList(request):
+    states = State.objects.all()
+    department = Ministry.objects.all()
+    context = {
+        'state_list': states,
+        'department_list': department
+    }
+
+    return render(request, 'jobs/dept_and_state.html', context)
+
+def depttJobList(request, slug):
+    deptt = Ministry.objects.get(slug=slug)
+    job_list = deptt.jobs.all()
+    page_number = request.GET.get('page')
+    paginator = Paginator(job_list, 50) # Show 50 jobs per page.
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, 'jobs/list_by_type.html', {'keyword': deptt.name, 'page_obj': page_obj, 'paginator': paginator})
+
+def stateJobList(request, slug):
+    state = State.objects.get(slug=slug)
+    job_list = state.jobs.all()
+    page_number = request.GET.get('page')
+    paginator = Paginator(job_list, 50) # Show 50 jobs per page.
+    page_obj = paginator.get_page(page_number)
+
+    return render(request, 'jobs/list_by_type.html', {'keyword': state.name, 'page_obj': page_obj, 'paginator': paginator})
 
 # class JobCreateView(LoginRequiredMixin, CreateView):
 #     model = Job

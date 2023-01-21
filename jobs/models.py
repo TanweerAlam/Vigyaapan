@@ -1,10 +1,10 @@
 from django.db import models
 from django.utils.text import slugify
-from django.core.validators import MinValueValidator, MaxValueValidator
+# from django.core.validators import MinValueValidator, MaxValueValidator
 from django.utils.translation import gettext_lazy as _
 from django.urls import reverse
 
-from django.conf import settings
+# from django.conf import settings
 from django.contrib.auth import get_user_model
 from tinymce.models import HTMLField
 
@@ -69,9 +69,9 @@ class Job(models.Model):
 
     post_title = models.CharField(max_length=200, default='Default name', null=False, blank=False)
     image = models.ImageField(upload_to='jobs_image/%Y/%m/', blank=True, null=True)
-    state = models.ForeignKey(State, on_delete=models.SET_NULL, default=None, null=True, blank=True)
+    state = models.ForeignKey(State, related_name="jobs", on_delete=models.SET_NULL, default=None, null=True, blank=True)
     # dept_of_ministry = models.CharField(max_length=50, null=True, blank=True)
-    ministry = models.ForeignKey(Ministry, on_delete=models.SET_NULL, default=None, null=True, blank=True)
+    ministry = models.ForeignKey(Ministry, related_name="jobs", on_delete=models.SET_NULL, default=None, null=True, blank=True)
     tags = TaggableManager()
 
     brief_intro = models.TextField(max_length=600, default='Brief introduction of the job post')
@@ -85,8 +85,9 @@ class Job(models.Model):
     application_mode = models.CharField(max_length=30, choices=APPLICATION)
     application_link = models.URLField(null=True, blank=True, default='')
 
-    minimum_age = models.PositiveIntegerField(default=18, validators=[MinValueValidator(17), MaxValueValidator(30)])
-    maximum_age = models.PositiveIntegerField(default=28, validators=[MinValueValidator(18), MaxValueValidator(60)])
+    # minimum_age = models.PositiveIntegerField(default=18, validators=[MinValueValidator(17), MaxValueValidator(30)])
+    # maximum_age = models.PositiveIntegerField(default=28, validators=[MinValueValidator(18), MaxValueValidator(60)])
+    age = HTMLField(default=15)
     minimum_qualification = models.CharField(max_length=50, choices=QUALIFICATION)
 
     total_posts = models.PositiveIntegerField()
@@ -114,6 +115,7 @@ class Job(models.Model):
     is_featured = models.BooleanField(default=False, verbose_name="Featured job?")
     is_admission = models.BooleanField(default=False, verbose_name="Is admission?")
     is_published = models.BooleanField(default=False, verbose_name="Published?")
+    is_archived = models.BooleanField(default=False, verbose_name="Archived?")
 
     created_on = models.DateField(auto_now_add=True, editable=False)
     updated_on = models.DateField(auto_now=True)
@@ -124,7 +126,7 @@ class Job(models.Model):
     class Meta:
         verbose_name = 'Job'
         verbose_name_plural = 'Jobs'
-
+        get_latest_by = 'created_on'
         ordering=['-created_on']
 
 
