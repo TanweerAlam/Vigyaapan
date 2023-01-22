@@ -47,9 +47,9 @@
             <hr>
             <br>
             {% if object.image %}
-              <div class="container mb-3">
+              <div class="container-fluid mb-3">
                 <div class="row justify-content-center">
-                  <img src="{{object.image.url}}" alt="{{object.post_title}}" style="object-fit:cover; max-height: 400px;">
+                  <img src="{{object.image.url}}" alt="{{object.post_title}}" style="object-fit:cover; max-height: 500px; padding: 0;">
                 </div>
               </div>
             {% endif %}

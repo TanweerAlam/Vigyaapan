@@ -50,6 +50,7 @@ urlpatterns = [
     path('sitemap-<section>.xml', cache_page(86400)(sitemap), {'sitemaps': sitemaps}, name='django.contrib.sitemaps.views.sitemap'),
 
     path('taggit_autosuggest', include('taggit_autosuggest.urls')),
+    path('maintenance-mode/', include("maintenance_mode.urls")),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        font-family: "Poppins", sans-serif;
+        margin: 0;
+      }
+
+      .content {
+        text-align: center;
+        margin: 80px auto;
+        display: flex;
+        justify-content: center;
+        width: auto;
+        height: auto;
+      }
+
+      h1 {
+        font-size: 80px;
+        color: rgb(36, 178, 189);
+      }
+
+      p {
+        font-size: 45px;
+        color: rgb(72, 72, 72);
+      }
+
+      .content img {
+        padding: 10px 40px;
+        width: 25vw;
+        height: auto;
+      }
+      .text {
+        padding: 180px 10px;
+      }
+
+      @media (max-width: 768px) {
+        .content {
+          display: block;
+        }
+
+        .text {
+          padding: 10px 10px;
+        }
+
+        .content img {
+            width: 50vw;
+        }
+
+        h1 {
+            font-size: 40px;
+        }
+
+        p {
+            font-size: 30px;
+        }
+
+      }
+    </style>
+    <title>Coming soon..</title>
+  </head>
+  <body>
+    <div class="content">
+      <div class="text">
+        <h1>COMING SOON</h1>
+        <p>STAY TUNED...</p>
+      </div>
+      <div>
+        <img src="{% static 'img/coming-soon.jpeg' %}" alt="coming soon" />
+      </div>
+    </div>
+  </body>
+</html>

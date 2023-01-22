@@ -1,0 +1,63 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>503 error</title>
+    <style>
+      * {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+      }
+      .content {
+        text-align: center;
+        width: auto;
+        height: auto;
+        padding: 10px;
+        margin: 40px auto;
+      }
+
+      p {
+        font-size: 25px;
+        color: rgb(102, 102, 102);
+      }
+
+      h1 {
+        font-size: 50px;
+        color: #00cca3;
+      }
+
+      .content img {
+        width: 38vw;
+        height: auto;
+      }
+
+      @media (max-width: 768px) {
+        .content img {
+          width: 80vw;
+        }
+
+        h1 {
+          font-size: 30px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="content">
+        <h1>SERVICE UNAVAILABLE</h1>
+        <p>We will be back soon...</p>
+        <img src="{% static 'img/503.jpeg' %}" alt="503 error" />
+      </div>
+    </main>
+  </body>
+</html>

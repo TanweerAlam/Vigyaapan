@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     "taggit_autosuggest",
     "admin_honeypot",
     'django_cleanup.apps.CleanupConfig',
+    'maintenance_mode',
 ]
 
 MIDDLEWARE = [
@@ -73,6 +74,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'maintenance_mode.middleware.MaintenanceModeMiddleware',
 ]
 
 ROOT_URLCONF = 'website.urls'

@@ -31,7 +31,7 @@ def jobLists(request, keyword):
         job_list = Job.objects.filter( result_link__isnull=False, is_published=True).order_by('-updated_on').values('post_title', 'slug')
     elif keyword == 'syllabus':
         job_list = Job.objects.filter(syllabus_link__isnull=False, is_published=True).order_by('-updated_on').values('post_title', 'slug')
-    elif keyword == 'answerkey':
+    elif keyword == 'answer-key':
         job_list = Job.objects.filter(answerkey_link__isnull=False, is_published=True).order_by('-updated_on').values('post_title', 'slug')
     elif keyword == 'admission':
         job_list = Job.objects.filter(is_admission=True, is_published=True).order_by('-updated_on').values('post_title', 'slug')

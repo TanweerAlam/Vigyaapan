@@ -3,7 +3,7 @@
 <nav class="navbar navbar-expand-lg navbar-light p-0 bg-white navbar-shadow">
   <div class="container">
     <a class="navbar-brand" href="{% url 'main:index' %}">
-      <img src="{% static 'img/logo.png' %}" alt="SarkariVigyaapan" style="height: 60px; width: 60px;" class="d-inline-block align-text-top">
+      <img src="{% static 'img/logo.webp' %}" alt="SarkariVigyaapan" style="height: 60px; width: 60px;" class="d-inline-block align-text-top">
     </a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -17,13 +17,13 @@
           <a class="nav-link" href="{% url 'jobs:search_results' %}">Find Jobs</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'jobs:list_by_type' 'result' %}">Results</a>
+          <a class="nav-link" href="{% url 'jobs:list_by_type' 'result' %}">Result</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'jobs:list_by_type' 'admit-card' %}">Admit Card</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="{% url 'jobs:list_by_type' 'answerkey' %}">Answer Key</a>
+          <a class="nav-link" href="{% url 'jobs:list_by_type' 'answer-key' %}">Answer Key</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="{% url 'jobs:depttStateList' %}">Department</a>
