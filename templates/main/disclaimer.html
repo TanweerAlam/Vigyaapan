@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
+{% load static %}
+
 
 {% block meta %}
-  <meta name="description" content="SarkariVigyaapan- A government job notifications portal, सरकारी विज्ञापन, Sarkari naukri, Sarkari exams">
+  <meta name="description" content="SarkariVigyaapan- A government job notifications portal. Get all the government job notification and latest update on government vacancies. Sarkari Vigyaapan is committed to bring you every important job updates under single page. So what are you waiting for !!! Start yours at: www.sarkarivigyaapan.com">
+  <meta name="keywords" content="सरकारी विज्ञापन, sarkari exam, sarkari network, sarkari job, sarkari naukri, sarkari result">
 {% endblock meta %}
 
 
@@ -10,15 +13,17 @@
   <meta property="og:title" content="SarkariVigyaapan- A government job notifications portal">
   <meta property="og:url" content={{request.build_absolute_uri}}>
   <meta property="og:description" content="SarkariVigyaapan- A government job notifications portal">
+  <meta property="og:image" content="{{request.scheme}}://{{request.META.HTTP_HOST}}{% static 'img/logo.webp' %}">
   <!--  -->
 {% endblock meta_opengraph %}
-  
+
 
 {% block meta_twitter %}
   <!-- for twitter-card -->
   <meta name="twitter:title" content="SarkariVigyaapan- A government job notifications portal">
   <meta name="twitter:description" content="SarkariVigyaapan- A government job notifications portal">
   <meta name="twitter:url" content="{{request.build_absolute_uri}}">
+  <meta name="twitter:image" content="{{request.scheme}}://{{request.META.HTTP_HOST}}{% static 'img/logo.webp' %}">
   <!-- ..... -->
 {% endblock meta_twitter %}
 
@@ -31,8 +36,8 @@
 
     <div class="container my-5">
         <div class="row">
-            
+
         </div>
     </div>
-    
+
 {% endblock content %}

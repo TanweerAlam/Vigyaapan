@@ -1,19 +1,21 @@
 <!-- templates/books/search_results.html -->
 {% extends 'base.html' %}
+{% load static %}
 
-{% block pagetitle %}Search{% endblock pagetitle %}
+{% block pagetitle %}| Search page{% endblock pagetitle %}
 
 
 {% block meta %}
-
+      <meta name="description" content="SarkariVigyaapan- A government job notifications portal">
+      <meta name="keywords" content="सरकारी विज्ञापन, sarkari exam, sarkari network, sarkari job, sarkari naukri, sarkari result"
 {% endblock meta %}
-
 
 {% block meta_opengraph %}
 <!-- for opengraph -->
 <meta property="og:title" content="SarkariVigyaapan | Search">
 <meta property="og:url" content={{request.build_absolute_uri}}>
 <meta property="og:description" content="Search the job notifications here...">
+<meta property="og:image" content="{{request.scheme}}://{{request.META.HTTP_HOST}}{% static 'img/logo.webp' %}">
 <!--  -->
 {% endblock meta_opengraph %}
 
@@ -22,6 +24,7 @@
 <meta name="twitter:title" content="SarkariVigyaapan | Search">
 <meta name="twitter:url" content="{{request.build_absolute_uri}}">
 <meta name="twitter:description" content="Search the job notifications here...">
+<meta name="twitter:image" content="{{request.scheme}}://{{request.META.HTTP_HOST}}{% static 'img/logo.webp' %}">
 <!-- ..... -->
 {% endblock meta_twitter %}
 
@@ -50,7 +53,7 @@
                     {% if job_list %}
                         {% for job in job_list %}
 
-                            <a class="list-group-item bg-transparent" href="{{ job.get_absolute_url }}">{{ job.post_title }}</a>
+                            <a class="list-group-item bg-transparent" href="{{ job.get_absolute_url }}" target="_blank">{{ job.post_title }}</a>
 
                         {% endfor %}
                     {% endif %}

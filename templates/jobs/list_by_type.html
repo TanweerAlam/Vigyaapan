@@ -1,12 +1,13 @@
 {% extends 'base.html' %}
-
+{% load static %}
 
 {% block pagetitle %}
-
+| {{keyword|title}}
 {% endblock pagetitle %}
 
 {% block meta %}
-
+  <meta name="description" content="SarkariVigyaapan- A government job notifications portal. Get all the government job notification and latest update on government vacancies. Sarkari Vigyaapan is committed to bring you every important job updates under single page. So what are you waiting for !!! Start yours at: www.sarkarivigyaapan.com">
+  <meta name="keywords" content="सरकारी विज्ञापन, sarkari exam, sarkari network, sarkari job, sarkari naukri, sarkari result">
 {% endblock meta %}
 
 {% block meta_opengraph %}
@@ -14,6 +15,7 @@
 <meta property="og:title" content="SarkariVigyaapan | Job postings based on {{keyword}}">
 <meta property="og:url" content={{request.build_absolute_uri}}>
 <meta property="og:description" content="Lists of job notifications based on {{keyword}}">
+<meta property="og:image" content="{{request.scheme}}://{{request.META.HTTP_HOST}}{% static 'img/logo.webp' %}">
 <!--  -->
 {% endblock meta_opengraph %}
 
@@ -22,6 +24,7 @@
 <meta name="twitter:title" content="SarkariVigyaapan | Job postings based on {{keyword}}">
 <meta name="twitter:url" content="{{request.build_absolute_uri}}">
 <meta name="twitter:description" content="Lists of job notifications based on {{keyword}}">
+<meta name="twitter:image" content="{{request.scheme}}://{{request.META.HTTP_HOST}}{% static 'img/logo.webp' %}">
 <!-- ..... -->
 {% endblock meta_twitter %}
 
@@ -48,7 +51,7 @@
                     {% if page_obj %}
                         {% for job in page_obj %}
 
-                            <a class="list-group-item bg-transparent" href="{% url 'jobs:jobDetail' job.slug %}">{{ job.post_title }}</a>
+                            <a class="list-group-item bg-transparent" href="{% url 'jobs:jobDetail' job.slug %}" target="_blank">{{ job.post_title }}</a>
 
                         {% endfor %}
                     {% else %}

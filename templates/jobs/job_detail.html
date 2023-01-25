@@ -16,6 +16,9 @@
       <meta property="og:title" content="{{ object.post_title }}">
       <meta property="og:url" content={{request.build_absolute_uri}}>
       <meta property="og:description" content="{{object.brief_intro|slice:':88'}}">
+      {% if object.image %}
+          <meta property="og:image" content="{{request.scheme}}://{{request.META.HTTP_HOST}}{{object.image.url}}">
+      {% endif %}
       <!--  -->
     {% endblock meta_opengraph %}
 
@@ -24,6 +27,9 @@
       <meta name="twitter:title" content="{{ object.post_title }}">
       <meta name="twitter:url" content="{{request.build_absolute_uri}}">
       <meta name="twitter:description" content="{{object.brief_intro|slice:':88'}}">
+        {% if object.image %}
+          <meta name="twitter:image" content="{{request.scheme}}://{{request.META.HTTP_HOST}}{{object.image.url}}">
+        {% endif %}
       <!-- ..... -->
     {% endblock meta_twitter %}
 
@@ -39,7 +45,7 @@
           <div class="col-10 col-sm-8 detail-card p-4 justify-content-center bg-light">
             <hr>
             <!-- <h1>Bihar BPSC 68th Recruitment 2022 Apply Online for 281 Post</h1> -->
-            <h1>{{ object.post_title|title }} {{ object.application_mode }}
+            <h1>{{ object.post_title }} {{ object.application_mode }}
                 {% if object.total_posts %}
                   for {{ object.total_posts }} posts
                 {% endif %}
@@ -88,7 +94,7 @@
         <div class="row justify-content-center">
           <div class="col-10 col-sm-8 detail-card p-4 justify-content-center bg-light">
             <hr>
-            <h1>{{object.post_title|title}} vacancy details</h1>
+            <h1>{{object.post_title}} vacancy details</h1>
             <hr>
             <br>
             <div class="container-fluid overflow-scroll">
@@ -208,16 +214,22 @@
             <hr>
             <br>
             <div class="grid-container">
+              {% if object.notification_link %}
+                <a href="{{object.notification_link}}" class="text-decoration-none"><div class="grid-item">Download notification</div></a>
+              {% else %}
+                <div class="grid-item">Notification link will be updated soon...</div>
+              {% endif %}
+
               {% if object.application_link %}
                 <a href="{{object.application_link}}" class="text-decoration-none"><div class="grid-item">Apply online</div></a>
               {% else %}
                 <div class="grid-item">Application link will be updated soon...</div>
               {% endif %}
 
-              {% if object.notification_link %}
-                <a href="{{object.notification_link}}" class="text-decoration-none"><div class="grid-item">Download notification</div></a>
+              {% if object.syllabus_link %}
+                <a href="{{object.syllabus_link}}" class="text-decoration-none"><div class="grid-item">Syllabus</div></a>
               {% else %}
-                <div class="grid-item">Notification link will be updated soon...</div>
+                <div class="grid-item">Syllabus link will be updated soon...</div>
               {% endif %}
 
               {% if object.result_link %}
@@ -232,7 +244,7 @@
                 <div class="grid-item">Official website link will be updated soon...</div>
               {% endif %}
 
-              <a href="" class="text-decoration-none"><div class="grid-item">Join us on Telegram</div></a>
+              <a href="https://t.me/vigsarkari" class="text-decoration-none"><div class="grid-item">Join us on Telegram</div></a>
             </div>
           </div>
         </div>

@@ -1,12 +1,12 @@
 from django.shortcuts import render, redirect
 from django.views.generic.base import TemplateView
-from django.views.generic.edit import FormView
+# from django.views.generic.edit import FormView
 from django.core.mail import send_mail, BadHeaderError
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 
 
-from .models import Main
+# from .models import Main
 from jobs.models import Job
 from .forms import ContactForm
 from django.conf import settings
