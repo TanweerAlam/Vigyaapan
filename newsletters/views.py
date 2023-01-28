@@ -21,11 +21,11 @@ def random_digits():
 
 @csrf_exempt
 def new(request):
-    # 
+    #
     form = None
-    # 
+    #
     if request.method == 'POST':
-        # 
+        #
         form = SubscriberForm(request.POST)
         if form.is_valid():
             sub = Subscriber(email=request.POST['email'], conf_num=random_digits())
@@ -45,7 +45,7 @@ def new(request):
                 #                                         sub.email,
                 #                                         sub.conf_num)
                 # current_site = Site.objects.get_current()
-                
+
                 message = Mail(
                     from_email=settings.FROM_EMAIL,
                     to_emails=sub.email,
@@ -63,19 +63,20 @@ def new(request):
                 try:
                     sg = SendGridAPIClient(settings.SENDGRID_API_KEY)
                     response = sg.send(message)
+                    print(response)
                     # send_mail(subject, html_message, from_email, (to_email,), fail_silently=False)
                     messages.success(request, "Subscription email has been sent...")
                 except:
                     messages.error(request, "Something's wrong with the subscription system...")
-                
+
                 return HttpResponseRedirect(reverse('main:index'))
                 # return render(request, 'main/index', {'email': sub.email, 'action': 'added', 'subscriber_form': SubscriberForm()})
-        
+
         else:
             messages.error(request, "Something went wrong. Try later...")
             # return render(request, 'main/index.html', {'form': SubscriberForm()})
     return HttpResponseRedirect(reverse('main:index'))
-        # 
+        #
         # sub = Subscriber(email=request.POST['email'], conf_num=random_digits())
         # sub.save()
         # message = Mail(

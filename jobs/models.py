@@ -70,17 +70,12 @@ class Job(models.Model):
     post_title = models.CharField(max_length=200, default='Default name', null=False, blank=False)
     image = models.ImageField(upload_to='jobs_image/%Y/%m/', blank=True, null=True)
     state = models.ForeignKey(State, related_name="jobs", on_delete=models.SET_NULL, default=None, null=True, blank=True)
-    # dept_of_ministry = models.CharField(max_length=50, null=True, blank=True)
     ministry = models.ForeignKey(Ministry, related_name="jobs", on_delete=models.SET_NULL, default=None, null=True, blank=True)
     tags = TaggableManager()
 
     brief_intro = models.TextField(max_length=600, default='Brief introduction of the job post')
-    content = HTMLField()
+    content = HTMLField(null=True, blank=True)
 
-    notification_date = models.DateField(null=True, blank=True)
-    online_application_date = models.DateField(null=True, blank=True)
-    application_expiry_date = models.DateTimeField(null=True, blank=True)
-    # post_updated_date = models.DateField()
 
     application_mode = models.CharField(max_length=30, choices=APPLICATION)
     application_link = models.URLField(null=True, blank=True, default='')
@@ -92,18 +87,21 @@ class Job(models.Model):
 
     total_posts = models.PositiveIntegerField()
     application_fee = HTMLField(default="Not announced")
-    # application_fee = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0)])
-    # .....
-    fee_last_date = models.DateField(null=True, blank=True)
-    correction_date = models.DateField(null=True, blank=True)
-    exam_date = models.DateField(null=True, blank=True)
-    # .....
 
-    # .....
-    # general_obc_fee = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(3000)])
-    # sc_st_ph_fee = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(3000)])
-    # female_fee = models.PositiveIntegerField(default=0, validators=[MinValueValidator(0), MaxValueValidator(3000)])
-    # .....
+
+    notification_date = models.DateField(null=True, blank=True)
+    application_expiry_date = models.DateField(null=True, blank=True)
+    important_dates = HTMLField(default='''
+    <p>Application Begin : Unannounced</p>
+    <p>Last Date for Apply Online : Unannounced</p>
+    <p>Pay Exam Fee Last Date : Unannounced</p>
+    <p>Admit Card Date : Unannounced</p>
+    <p>Exam Date : Unannounced</p>
+    ''')
+
+
+    extra_info_box_1 = HTMLField(null=True, blank=True)
+    extra_info_box_2 = HTMLField(null=True, blank=True)
 
     official_site = models.URLField(null=True, blank=True, default='')
     admit_card_link = models.URLField(null=True, blank=True, default='')
@@ -117,8 +115,8 @@ class Job(models.Model):
     is_published = models.BooleanField(default=False, verbose_name="Published?")
     is_archived = models.BooleanField(default=False, verbose_name="Archived?")
 
-    created_on = models.DateField(auto_now_add=True, editable=False)
-    updated_on = models.DateField(auto_now=True)
+    created_on = models.DateTimeField(auto_now_add=True, editable=False)
+    updated_on = models.DateTimeField(auto_now=True)
 
     slug = models.SlugField(max_length=300, blank=True, null=True, default='')
     author = models.ForeignKey(get_user_model(), on_delete=models.SET_NULL, default=None, null=True, blank=True)
@@ -126,7 +124,7 @@ class Job(models.Model):
     class Meta:
         verbose_name = 'Job'
         verbose_name_plural = 'Jobs'
-        get_latest_by = 'created_on'
+        get_latest_by = '-created_on'
         ordering=['-created_on']
 
 
@@ -136,7 +134,8 @@ class Job(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug and self.post_title:
-            self.slug = slugify(self.post_title + "  " + str(self.state) + " " + str(self.total_posts))
+            self.slug = slugify(self.post_title)
+            # self.slug = slugify(self.post_title + "  " + str(self.state) + " " + str(self.total_posts))
         if self.image:
             picture = self.image
             if picture.size > 0.1*1024*1024:

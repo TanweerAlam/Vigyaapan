@@ -19,7 +19,7 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['testsarkari.pythonanywhere.com', '127.0.0.1', 'www.sarkarivigyaapan.com' ]
+ALLOWED_HOSTS = ['testsarkari.pythonanywhere.com', '127.0.0.1', 'www.sarkarivigyaapan.com', 'sarkarivigyaapan.com' ]
 
 # Security
 CSRF_COOKIE_SECURE = True
@@ -145,7 +145,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Kolkata'
 
 USE_I18N = True
 
@@ -184,12 +184,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # EMAIL_HOST = "localhost"
 # EMAIL_PORT = 1025
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 # Using mailgun as Email backend
-# EMAIL_HOST = env('SMTP_HOSTNAME')
-# EMAIL_PORT = env('SMTP_PORT')
-# EMAIL_HOST_USER = env('SMTP_USERNAME')
-# EMAIL_HOST_PASSWORD = env('SMTP_PASSWORD')
-# EMAIL_USE_TLS = True
+EMAIL_HOST = env('SMTP_HOSTNAME')
+EMAIL_PORT = env('SMTP_PORT')
+EMAIL_HOST_USER = env('SMTP_USERNAME')
+EMAIL_HOST_PASSWORD = env('SMTP_PASSWORD')
+EMAIL_USE_TLS = env('SMTP_USE_TLS')
 
 # Using sendgrid for Newsletters app
 # FROM_EMAIL = "tannumystic@gmail.com"
@@ -197,7 +198,7 @@ FROM_EMAIL = env('FROM_EMAIL')
 SENDGRID_API_KEY = env('SMTP_PASSWORD')
 
 # Django-sendgrid-v5 settings
-EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
+# EMAIL_BACKEND = "sendgrid_backend.SendgridBackend"
 # Toggle sandbox mode (when running in DEBUG mode)
 SENDGRID_SANDBOX_MODE_IN_DEBUG=False
 # echo to stdout or any other file-like object that is passed to the backend via the stream kwarg.

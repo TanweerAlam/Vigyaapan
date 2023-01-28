@@ -115,79 +115,99 @@
             <h1>Important Dates</h1>
             <hr>
             <br>
-            <ul>
-              <li>Application Begin :
-              {% if object.online_application_date %}
-              <strong>{{object.online_application_date}}</strong>
-              {% else %}
-                To be announced
-              {% endif %}
-                </li>
-              <li>Last Date for Apply Online :
-              {% if object.application_expiry_date %}
-              <strong>{{object.application_expiry_date|date:"M d, Y"}}</strong>
-              {% else %}
-                To be announced
-              {% endif %}
-              </li>
-              <li>Pay Exam Fee Last Date :
-                {% if object.fee_last_date %}
-                <strong>{{object.fee_last_date}}</strong>
-                {% else %}
-                  Unannounced
-                {% endif %}
-              </li>
+            <div class="container-fluid overflow-scroll">
+                {{ object.important_dates|safe}}
+            </div>
+            <!--<ul>-->
+            <!--  <li>Application Begin :-->
+            <!--  {% if object.online_application_date %}-->
+            <!--  <strong>{{object.online_application_date}}</strong>-->
+            <!--  {% else %}-->
+            <!--    To be announced-->
+            <!--  {% endif %}-->
+            <!--    </li>-->
+            <!--  <li>Last Date for Apply Online :-->
+            <!--  {% if object.application_expiry_date %}-->
+            <!--  <strong>{{object.application_expiry_date|date:"M d, Y"}}</strong>-->
+            <!--  {% else %}-->
+            <!--    To be announced-->
+            <!--  {% endif %}-->
+            <!--  </li>-->
+            <!--  <li>Pay Exam Fee Last Date :-->
+            <!--    {% if object.fee_last_date %}-->
+            <!--    <strong>{{object.fee_last_date}}</strong>-->
+            <!--    {% else %}-->
+            <!--      Unannounced-->
+            <!--    {% endif %}-->
+            <!--  </li>-->
 
-              {% if object.correction_date %}
-              <li>Correction Last Date : <strong>{{object.correction_date}}</strong></li>
-              {% endif %}
+            <!--  <li>Admit Card Date :-->
+            <!--    {% if object.admit_card_date %}-->
+            <!--      <strong>{{object.admit_card_date}}</strong>-->
+            <!--    {% else %}-->
+            <!--      Unannounced-->
+            <!--    {% endif %}-->
+            <!--  </li>-->
 
-              <li>Exam Date :
-                {% if object.exam_date %}
-                  <strong>{{object.exam_date}}</strong>
-                {% else %}
-                  Unannounced
-                {% endif %}
-              </li>
-            </ul>
+            <!--  {% if object.correction_date %}-->
+            <!--  <li>Correction Last Date : <strong>{{object.correction_date}}</strong></li>-->
+            <!--  {% endif %}-->
+
+            <!--  <li>Exam Date :-->
+            <!--    {% if object.exam_date %}-->
+            <!--      <strong>{{object.exam_date}}</strong>-->
+            <!--    {% else %}-->
+            <!--      Unannounced-->
+            <!--    {% endif %}-->
+            <!--  </li>-->
+            <!--</ul>-->
           </div>
           <div class="col-10 col-sm-4 detail-card p-4 mb-5 mx-1 justify-content-center bg-light">
             <hr>
             <h1>Application Fee</h1>
             <hr>
             <br>
-            <!--<ul>-->
-            <!--  <li>General / OBC/ Other State :-->
-            <!--    {% if object.general_obc_fee %}-->
-            <!--      {{object.general_obc_fee}}-->
-            <!--    {% else %}-->
-            <!--      Unannounced-->
-            <!--    {% endif %}-->
-            <!--    /-</li>-->
-            <!--  <li>SC / ST / PH :-->
-            <!--    {% if object.sc_st_ph_fee %}-->
-            <!--      {{object.sc_st_ph_fee}}-->
-            <!--    {% else %}-->
-            <!--      Unannounced-->
-            <!--    {% endif %}-->
-            <!--    /-</li>-->
-            <!--  <li>Female Candidate :-->
-            <!--    {% if object.female_fee %}-->
-            <!--      {{object.female_fee}}-->
-            <!--    {% else %}-->
-            <!--      Unannounced-->
-            <!--    {% endif %}-->
-            <!--    /-</li>-->
-            <!--  <li>Pay the Exam Fee Through Online / Offline Fee Mode Only</li>-->
-            <!--</ul>-->
-            {% if object.application_fee %}
-                {{object.application_fee|safe}}
-            {% else %}-->
-                  Unannounced
-            {% endif %}
+            <div class="container-fluid overflow-scroll">
+                {% if object.application_fee %}
+                    {{object.application_fee|safe}}
+                {% else %}-->
+                      Unannounced
+                {% endif %}
+            </div>
           </div>
         </div>
       </div>
+      <!---->
+      {% if object.extra_info_box_1 %}
+          <div class="container mb-5">
+            <div class="row justify-content-center">
+              <div class="col-10 col-sm-8 detail-card p-4 justify-content-center bg-light overflow-scroll">
+                <hr>
+                <br>
+                {{object.extra_info_box_1|safe}}
+
+              </div>
+            </div>
+          </div>
+      {% endif %}
+
+      <!---->
+
+        <!---->
+          {% if object.extra_info_box_2 %}
+              <div class="container mb-5">
+                <div class="row justify-content-center">
+                  <div class="col-10 col-sm-8 detail-card p-4 justify-content-center bg-light overflow-scroll">
+                    <hr>
+                    <br>
+                    {{object.extra_info_box_2|safe}}
+
+                  </div>
+                </div>
+              </div>
+          {% endif %}
+
+          <!---->
       <!--  -->
       <div class="container mb-5">
         <div class="row justify-content-center">
@@ -196,12 +216,9 @@
             <h1>Age Limit</h1>
             <hr>
             <br>
-            {{object.age|safe}}
-            <!-- <ul>
-              <li>Minimum Age : <strong>{{ object.minimum_age }}</strong> Years (Post Wise)</li>
-              <li>Maximum Age : <strong>{{ object.maximum_age }}</strong> Years</li>
-              <li>Age Relaxation as per state or central rules </li>
-            </ul> -->
+            <div class="container-fluid overflow-scroll">
+                {{object.age|safe}}
+            </div>
           </div>
         </div>
       </div>
@@ -230,6 +247,12 @@
                 <a href="{{object.syllabus_link}}" class="text-decoration-none"><div class="grid-item">Syllabus</div></a>
               {% else %}
                 <div class="grid-item">Syllabus link will be updated soon...</div>
+              {% endif %}
+
+              {% if object.admit_card_link %}
+                <a href="{{object.admit_card_link}}" class="text-decoration-none"><div class="grid-item">Admit card</div></a>
+              {% else %}
+                <div class="grid-item">Admit card link will be updated soon...</div>
               {% endif %}
 
               {% if object.result_link %}
