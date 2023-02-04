@@ -7,7 +7,8 @@ env = environ.Env()
 environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
+# 
 
 
 # Quick-start development settings - unsuitable for production
@@ -19,17 +20,18 @@ SECRET_KEY = env('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['testsarkari.pythonanywhere.com', '127.0.0.1', 'www.sarkarivigyaapan.com', 'sarkarivigyaapan.com' ]
+# ALLOWED_HOSTS = ['testsarkari.pythonanywhere.com', '127.0.0.1', 'www.sarkarivigyaapan.com', 'sarkarivigyaapan.com' ]
+ALLOWED_HOSTS = []
 
 # Security
-CSRF_COOKIE_SECURE = True
-SESSION_COOKIE_SECURE = True
-SECURE_HSTS_SECONDS = 3600
-SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-SECURE_HSTS_PRELOAD = True
-SECURE_SSL_REDIRECT = True
-SECURE_BROWSER_XSS_FILTER = True
-SECURE_CONTENT_TYPE_NOSNIFF = True
+# CSRF_COOKIE_SECURE = True
+# SESSION_COOKIE_SECURE = True
+# SECURE_HSTS_SECONDS = 3600
+# SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+# SECURE_HSTS_PRELOAD = True
+# SECURE_SSL_REDIRECT = True
+# SECURE_BROWSER_XSS_FILTER = True
+# SECURE_CONTENT_TYPE_NOSNIFF = True
 
 SITE_ID = 1
 # Application definition
@@ -108,36 +110,36 @@ WSGI_APPLICATION = 'website.wsgi.application'
 # }
 
 
-DATABASES = {
-    'default': {
-        'ENGINE': env('DATABASE_ENGINE'),
-        'NAME': env('DATABASE_USER')+'$'+env('DATABASE_NAME'),
-        'USER': env('DATABASE_USER'),
-        'PASSWORD': env('DATABASE_PASSWORD'),
-        'HOST': env('DATABASE_HOSTNAME'),
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
-        },
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': env('DATABASE_ENGINE'),
+#         'NAME': env('DATABASE_USER')+'$'+env('DATABASE_NAME'),
+#         'USER': env('DATABASE_USER'),
+#         'PASSWORD': env('DATABASE_PASSWORD'),
+#         'HOST': env('DATABASE_HOSTNAME'),
+#         'OPTIONS': {
+#             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'",
+#         },
+#     }
+# }
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
-]
+# AUTH_PASSWORD_VALIDATORS = [
+#     {
+#         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+#     },
+#     {
+#         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+#     },
+#     {
+#         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+#     },
+#     {
+#         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+#     },
+# ]
 
 
 # Internationalization
@@ -180,17 +182,14 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 #
 # AUTH_USER_MODEL = "users.CustomUser"
 
-# # Email backend
-# EMAIL_HOST = "localhost"
-# EMAIL_PORT = 1025
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# Using mailgun as Email backend
-EMAIL_HOST = env('SMTP_HOSTNAME')
-EMAIL_PORT = env('SMTP_PORT')
-EMAIL_HOST_USER = env('SMTP_USERNAME')
-EMAIL_HOST_PASSWORD = env('SMTP_PASSWORD')
-EMAIL_USE_TLS = env('SMTP_USE_TLS')
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# # Using mailgun as Email backend
+# EMAIL_HOST = env('SMTP_HOSTNAME')
+# EMAIL_PORT = env('SMTP_PORT')
+# EMAIL_HOST_USER = env('SMTP_USERNAME')
+# EMAIL_HOST_PASSWORD = env('SMTP_PASSWORD')
+# EMAIL_USE_TLS = env('SMTP_USE_TLS')
 
 # Using sendgrid for Newsletters app
 # FROM_EMAIL = "tannumystic@gmail.com"
