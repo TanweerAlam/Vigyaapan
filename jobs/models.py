@@ -73,30 +73,28 @@ class Job(models.Model):
     ministry = models.ForeignKey(Ministry, related_name="jobs", on_delete=models.SET_NULL, default=None, null=True, blank=True)
     tags = TaggableManager()
 
-    brief_intro = models.TextField(max_length=600, default='Brief introduction of the job post')
+    brief_intro = models.TextField(default='Brief introduction of the job post')
     content = HTMLField(null=True, blank=True)
 
 
     application_mode = models.CharField(max_length=30, choices=APPLICATION)
     application_link = models.URLField(null=True, blank=True, default='')
 
-    # minimum_age = models.PositiveIntegerField(default=18, validators=[MinValueValidator(17), MaxValueValidator(30)])
-    # maximum_age = models.PositiveIntegerField(default=28, validators=[MinValueValidator(18), MaxValueValidator(60)])
     age = HTMLField(default=15)
     minimum_qualification = models.CharField(max_length=50, choices=QUALIFICATION)
 
-    total_posts = models.PositiveIntegerField()
+    total_posts = models.PositiveIntegerField(null=True, blank=True)
     application_fee = HTMLField(default="Not announced")
 
 
     notification_date = models.DateField(null=True, blank=True)
     application_expiry_date = models.DateField(null=True, blank=True)
     important_dates = HTMLField(default='''
-    <p>Application Begin : Unannounced</p>
-    <p>Last Date for Apply Online : Unannounced</p>
-    <p>Pay Exam Fee Last Date : Unannounced</p>
-    <p>Admit Card Date : Unannounced</p>
-    <p>Exam Date : Unannounced</p>
+    <p>Application Begin : <strong>Unannounced</strong></p>
+    <p>Last Date for Apply Online : <strong>Unannounced</strong></p>
+    <p>Pay Exam Fee Last Date : <strong>Unannounced</strong></p>
+    <p>Admit Card Date : <strong>Unannounced</strong></p>
+    <p>Exam Date : <strong>Unannounced</strong></p>
     ''')
 
 
