@@ -98,9 +98,11 @@
                           {% endif %}
                         </p>
                     </div>
-                    <div>
-                      <strong><span style="color: #0d6efd;">{{ job.total_posts }} seats</span></strong>
-                    </div>
+                    {% if job.total_posts %}
+                      <div>
+                        <strong><span style="color: #0d6efd;">{{ job.total_posts }} seats</span></strong>
+                      </div>
+                    {% endif %}
                   <!-- <p>Min-qualification: {{ job.minimun_qualification }}</p> -->
                   <a href="{% url 'jobs:jobDetail' job.slug %}" class="stretched-link" target="_blank"></a>
                 </div>
@@ -136,7 +138,7 @@
               {% endfor %}
 
               </ul>
-            <a href="{% url 'jobs:list_by_type' 'admit-card' %}" class="text-center">View more</a>
+            <a href="{% url 'jobs:list_by_type' 'admit-card' %}" class="text-center text-decoration-none">View more</a>
           </div>
         </div>
         <div class="col-md-4 my-3">
@@ -152,7 +154,7 @@
               {% endfor %}
 
             </ul>
-            <a href="{% url 'jobs:list_by_type' 'result' %}" class="text-center">View more</a>
+            <a href="{% url 'jobs:list_by_type' 'result' %}" class="text-center text-decoration-none">View more</a>
           </div>
         </div>
         <div class="col-md-4 my-3 order-first order-sm-0">
@@ -167,7 +169,7 @@
               {% endfor %}
 
             </ul>
-            <a href="{% url 'jobs:jobList' %}" class="text-center">View more</a>
+            <a href="{% url 'jobs:jobList' %}" class="text-center text-decoration-none">View more</a>
           </div>
         </div>
       <!-- </div>
@@ -186,7 +188,7 @@
               {% endfor %}
 
             </ul>
-            <a href="{% url 'jobs:list_by_type' 'answer-key' %}" class="text-center">View more</a>
+            <a href="{% url 'jobs:list_by_type' 'answer-key' %}" class="text-center text-decoration-none">View more</a>
           </div>
         </div>
         <div class="col-md-4 my-3">
@@ -201,7 +203,7 @@
               {% endfor %}
 
             </ul>
-            <a href="{% url 'jobs:list_by_type' 'syllabus' %}" class="text-center">View more</a>
+            <a href="{% url 'jobs:list_by_type' 'syllabus' %}" class="text-center text-decoration-none">View more</a>
           </div>
         </div>
         <div class="col-md-4 my-3">
@@ -216,7 +218,7 @@
               {% endfor %}
 
             </ul>
-            <a href="{% url 'jobs:list_by_type' 'admission' %}" class="text-center">View more</a>
+            <a href="{% url 'jobs:list_by_type' 'admission' %}" class="text-center text-decoration-none">View more</a>
           </div>
         </div>
       </div>

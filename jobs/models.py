@@ -65,8 +65,9 @@ class Job(models.Model):
         ('OFFLINE', _('Offline'))
     ]
 
-    keywords = models.CharField(max_length=200, default='Default name', null=False, blank=False)
+    keywords = models.CharField(max_length=200, default="Default keywords", null=False, blank=False)
 
+    advertisement_number = models.CharField(max_length=200, null=True, blank=True)
     post_title = models.CharField(max_length=200, default='Default name', null=False, blank=False)
     image = models.ImageField(upload_to='jobs_image/%Y/%m/', blank=True, null=True)
     state = models.ForeignKey(State, related_name="jobs", on_delete=models.SET_NULL, default=None, null=True, blank=True)
@@ -100,6 +101,8 @@ class Job(models.Model):
 
     extra_info_box_1 = HTMLField(null=True, blank=True)
     extra_info_box_2 = HTMLField(null=True, blank=True)
+
+    important_links = models.TextField(null=True, blank=True, default='')
 
     official_site = models.URLField(null=True, blank=True, default='')
     admit_card_link = models.URLField(null=True, blank=True, default='')
