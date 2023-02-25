@@ -194,6 +194,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Using sendgrid for Newsletters app
 # FROM_EMAIL = "tannumystic@gmail.com"
 FROM_EMAIL = env('FROM_EMAIL')
+DEFAULT_FROM_EMAIL = env('FROM_EMAIL')
 SENDGRID_API_KEY = env('SMTP_PASSWORD')
 
 # Django-sendgrid-v5 settings
